@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Mobil;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Mobil::with('pemilik_mobil')->get();
 });

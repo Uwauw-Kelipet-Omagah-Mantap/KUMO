@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Mobil extends Model
 {
     use HasFactory;
+    protected $table = 'mobil';
+    protected $guarded = ['id_mobil'];
+
+    public $timestamps = false;
+
+    // RELATION
+    public function pemilik_mobil()
+    {
+        return $this->belongsTo(PemilikMobil::class, 'id_pemilik_mobil', 'id_pemilik_mobil');
+    }
 }
