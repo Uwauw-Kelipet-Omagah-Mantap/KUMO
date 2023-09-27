@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pelanggan');
             $table->text('ulasan');
             $table->unsignedTinyInteger('rating');
+            $table->timestamps();
             //FK id_mobil
             $table->foreign('id_mobil')->references('id_mobil')->on('mobil')
                     ->cascadeOnDelete()->cascadeOnUpdate();
