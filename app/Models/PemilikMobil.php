@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class PemilikMobil extends Model
 {
     use HasFactory;
+    protected $table = 'pemilik_mobil';
+    protected $guarded = ['id_pemilik_mobil'];
+
+    //RELATION
+    public function mobil()
+    {
+        return $this->hasMany(Mobil::class, 'id_mobil', 'id_mobil');
+    }
 }
