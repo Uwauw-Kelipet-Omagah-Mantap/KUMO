@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Perusahaan extends Model
 {
     use HasFactory;
+    protected $table = 'perusahaan';
+    protected $guarded = ['id_perusahaan'];
+
+    // RELATION
+    public function admin()
+    {
+        return $this->hasMany(Admin::class,'id_perusahaan','id_perusahaan');
+    }
 }
