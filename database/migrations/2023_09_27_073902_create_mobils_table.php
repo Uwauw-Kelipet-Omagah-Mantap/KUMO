@@ -14,13 +14,19 @@ return new class extends Migration
         Schema::create('mobil', function (Blueprint $table) {
             $table->id('id_mobil');
             $table->unsignedBigInteger('id_pemilik_mobil');
-            $table->string('merk', 50);
-            $table->string('model', 50);
-            $table->string('status', 50);
-            $table->string('foto', 50);
-
+            $table->unsignedBigInteger('model_mobil');
+            $table->string('no_polisi', 10)->nullable(false);
+            $table->enum('status_mobil', []);
+            $table->string('foto_stnk', 50)->nullable(false);
+            $table->string('foto_bpkb', 50)->nullable(false);
+            $table->string('foto_mobil', 50)->nullable(false);
+            $table->timestamps();
+            //FK PEMILIK MOBIL
             $table->foreign('id_pemilik_mobil')->references('id_pemilik_mobil')->on('pemilik_mobil')
-                ->cascadeOnDelete()->cascadeOnUpdate();
+                    ->cascadeOnDelete()->cascadeOnUpdate();
+            //FK MODEL MOBIL
+            $table->foreign('id_model_mobil')->references('id_model_mobil')->on('model_mobil')
+                    ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -29,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mobils');
+        Schema::dropIfExists('mobil');
     }
 };

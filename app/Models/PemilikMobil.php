@@ -9,11 +9,11 @@ class PemilikMobil extends Model
 {
     use HasFactory;
     protected $table = 'pemilik_mobil';
-    protected $guarded = ['id_pemilik_mobil', 'created_at', 'updated_at'];
+    protected $guarded = ['id_pemilik_mobil'];
 
-    // RELATION
-    public function pemilik_mobil()
+    //RELATION
+    public function mobil()
     {
-        return $this->belongsTo(PemilikMobil::class, 'id_pemilik_mobil', 'id_pemilik_mobil');
+        return $this->hasMany(Mobil::class, 'id_mobil', 'id_mobil');
     }
 }

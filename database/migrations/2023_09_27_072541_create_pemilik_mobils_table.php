@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('pemilik_mobil', function (Blueprint $table) {
             $table->id('id_pemilik_mobil');
-            $table->string('nama', 50);
-            $table->text('alamat');
-            $table->string('nomor_telepon', 15);
-            $table->date('tanggal_lahir');
-            $table->string('email', 50);
-            $table->string('password', 50);
-            $table->string('foto_ktp', 50);
+            $table->string('nama_pemilik', 50)->nullable(false);
+            $table->text('alamat_pemilik')->nullable(false);
+            $table->string('nomor_telepon_pemilik', 15)->nullable(false);
+            $table->string('foto_ktp_pemilik', 50)->nullable(false);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pemilik_mobils');
+        Schema::dropIfExists('pemilik_mobil');
     }
 };

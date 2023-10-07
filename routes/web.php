@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Mobil;
+use App\Models\PemilikMobil;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return Mobil::with('pemilik_mobil')->get();
+    return PemilikMobil::with('pemilik_mobil')->get();
 });

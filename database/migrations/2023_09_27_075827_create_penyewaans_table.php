@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pemilik_mobil');
             $table->unsignedBigInteger('id_pelanggan');
             $table->unsignedBigInteger('id_mobil');
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_selesai');
+            $table->datetime('tanggal_mulai');
+            $table->datetime('tanggal_selesai');
             $table->enum('status_pemesanan', [
                 'sedang_diantar',
                 'sudah_ada_ditujuan',
@@ -25,14 +25,16 @@ return new class extends Migration
                 'dalam_masa_pengembalian',
                 'sudah_dikembalikan'
             ]);
-            $table->unsignedInteger('total_biaya');
+            $table->integer('total_biaya');
             $table->enum('status_pembayaran', ['belum_dibayar', 'sudah_dibayar']);
             $table->timestamps();
-
+            //FK PEMILIK MOBIL
             $table->foreign('id_pemilik_mobil')->references('id_pemilik_mobil')->on('pemilik_mobil')
                 ->cascadeOnDelete()->cascadeOnUpdate();
+            //FK PELANGGAN
             $table->foreign('id_pelanggan')->references('id_pelanggan')->on('pelanggan')
                 ->cascadeOnDelete()->cascadeOnUpdate();
+            //FK MOBIL
             $table->foreign('id_mobil')->references('id_mobil')->on('mobil')
                 ->cascadeOnDelete()->cascadeOnUpdate();
         });
