@@ -9,9 +9,7 @@ class Mobil extends Model
 {
     use HasFactory;
     protected $table = 'mobil';
-    protected $guarded = ['id_mobil'];
-
-    public $timestamps = false;
+    protected $guarded = ['id_mobil', 'created_at', 'updated_at'];
 
     // RELATION
     public function pemilik_mobil()
