@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('pelanggan', function (Blueprint $table) {
             $table->id('id_pelanggan');
-            $table->string('nama',255)->nullable(false);
-            $table->text('alamat');
-            $table->string('nomor_telepon',15)->nullable(false);
-            $table->date('tanggal_lahir');
-            $table->string('email',50)->nullable(false);
-            $table->string('password',50)->nullable(false);
-            $table->string('foto_ktp',50)->nullable(false);
+            $table->string('nama_pelanggan',255)->nullable(false);
+            $table->text('alamat_pelanggan')->nullable(false);
+            $table->string('nomor_telepon_pelanggan',15)->nullable(false);
+            $table->string('foto_ktp_pelanggan',50)->nullable(false);
+            $table->string('foto_sim',50)->nullable(false);
         });
     }
 

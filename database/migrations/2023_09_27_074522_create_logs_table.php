@@ -10,9 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('riwayat', function (Blueprint $table) {
-            $table->id('id_riwayat');
-            $table->text('riwayat');
+        Schema::create('logs', function (Blueprint $table) {
+            $table->id('id_log');
+            $table->text('log');
             $table->timestamps();
         });
     }
@@ -22,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('riwayat');
+        Schema::dropIfExists('logs');
     }
 };

@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('admin', function (Blueprint $table) {
             $table->id('id_admin');
             $table->unsignedBigInteger('id_perusahaan');
-            $table->string('nama', 255);
-            $table->string('email', 50);
-            $table->string('password', 50);
+            $table->string('nama_admin', 50)->nullable(false);
             $table->timestamps();
-
+            //FK
             $table->foreign('id_perusahaan')->references('id_perusahaan')->on('perusahaan')
                 ->cascadeOnDelete()->cascadeOnUpdate();
         });
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('admin');
     }
 };

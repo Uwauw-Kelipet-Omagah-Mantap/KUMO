@@ -18,4 +18,9 @@ class Mobil extends Model
     {
         return $this->belongsTo(PemilikMobil::class, 'id_pemilik_mobil', 'id_pemilik_mobil');
     }
+
+    public function penyewaan()
+    {
+        return $this->hasMany(Penyewaan::class, 'id_mobil', 'id_mobil');
+    }
 }
