@@ -11,9 +11,15 @@ class Pelanggan extends Model
     protected $table = 'pelanggan';
     protected $guarded = ['id_pelanggan', 'created_at', 'updated_at'];
 
-    // RELATION
-    public function pemilik_mobil()
+    // RELATION ULASAN
+    public function ulasan()
     {
-        return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id_pelanggan');
+        return $this->hasMany(Ulasan::class, 'id_ulasan', 'id_ulasan');
+    }
+
+    //RELATION PENYEWAAN
+    public function penyewaan()
+    {
+        return $this->hasMany(Penyewaan::class, 'id_penyewaan', 'id_penyewaan');
     }
 }

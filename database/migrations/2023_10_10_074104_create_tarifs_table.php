@@ -11,20 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mobil', function (Blueprint $table) {
-            $table->id('id_mobil');
-            $table->unsignedBigInteger('id_pemilik_mobil');
+        Schema::create('tarif', function (Blueprint $table) {
+            $table->id('id_tarif');
+            $table->unsignedBigInteger('id_mobil');
             $table->unsignedBigInteger('id_model_mobil');
-            $table->string('no_polisi', 10)->nullable(false);
-            $table->enum('status_mobil', ['tidak_lecet']);
-            $table->string('foto_stnk', 50)->nullable(false);
-            $table->string('foto_bpkb', 50)->nullable(false);
-            $table->string('foto_mobil', 50)->nullable(false);
+            $table->integer('durasi_tarif')->nullable(false);
+            $table->integer('nominal')->nullable(false);
             $table->timestamps();
-            //FK PEMILIK MOBIL
-            $table->foreign('id_pemilik_mobil')->references('id_pemilik_mobil')->on('pemilik_mobil')
+            //FK ID MOBIL
+            $table->foreign('id_mobil')->references('id_mobil')->on('mobil')
                     ->cascadeOnDelete()->cascadeOnUpdate();
-            //FK MODEL MOBIL
+            //FK ID MODEL MOBIL
             $table->foreign('id_model_mobil')->references('id_model_mobil')->on('model_mobil')
                     ->cascadeOnDelete()->cascadeOnUpdate();
         });
@@ -35,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mobil');
+        Schema::dropIfExists('tarif');
     }
 };
