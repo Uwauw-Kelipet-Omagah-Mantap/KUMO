@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mobil', function (Blueprint $table) {
-            $table->id('id_mobil');
-            $table->unsignedBigInteger('id_pemilik_mobil');
-            $table->unsignedBigInteger('id_model_mobil');
+            $table->string('id_mobil')->primary();
+            $table->string('id_pemilik_mobil')->nullable(false);
+            $table->string('id_model_mobil')->nullable(false);
             $table->string('no_polisi', 10)->nullable(false);
-            $table->enum('status_mobil', ['tidak_lecet']);
+            $table->enum('status_mobil', [
+                                            'tersedia',
+                                            'sedang disewa'
+                                        ])->nullable(false);
             $table->string('foto_stnk', 50)->nullable(false);
-            $table->string('foto_bpkb', 50)->nullable(false);
-            $table->string('foto_mobil', 50)->nullable(false);
             $table->timestamps();
             //FK PEMILIK MOBIL
             $table->foreign('id_pemilik_mobil')->references('id_pemilik_mobil')->on('pemilik_mobil')

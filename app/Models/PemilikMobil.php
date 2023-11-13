@@ -11,9 +11,15 @@ class PemilikMobil extends Model
     protected $table = 'pemilik_mobil';
     protected $guarded = ['id_pemilik_mobil'];
 
-    //RELATION
+    //RELATION MOBIL
     public function mobil()
     {
         return $this->hasMany(Mobil::class, 'id_mobil', 'id_mobil');
+    }
+
+    //RELATION AKUN
+    public function akun()
+    {
+        return $this->hasOne(Akun::class,'id_akun', 'id_akun');
     }
 }

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tarif extends Model
 {
     use HasFactory;
+    protected $table = 'tarif';
+    protected $primaryKey = 'id_tarif';
+    protected $guarded = ['id_tarif'];
 }

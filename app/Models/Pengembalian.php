@@ -9,6 +9,7 @@ class Pengembalian extends Model
 {
     use HasFactory;
     protected $table = 'pengembalian';
+    protected $primaryKey = 'id_pengembalian';
     protected $guarded = ['id_pengembalian'];
     
     //RELATION PENYEWAAN

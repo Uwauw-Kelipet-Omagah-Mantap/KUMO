@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('model_mobil', function (Blueprint $table) {
-            $table->id('id_model_mobil');
+            $table->string('id_model_mobil')->primary();
             $table->enum('tipe_mobil', ['sedan', 'suv', 'truck', 'minibus']);
             $table->enum('merk_mobil', [
                                         'toyota', 'daihatsu', 'suzuki', 

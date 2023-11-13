@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tarif', function (Blueprint $table) {
-            $table->id('id_tarif');
-            $table->unsignedBigInteger('id_mobil');
-            $table->unsignedBigInteger('id_model_mobil');
-            $table->integer('durasi_tarif')->nullable(false);
-            $table->integer('nominal')->nullable(false);
+            $table->string('id_tarif')->primary();
+            $table->string('id_mobil')->nullable(false);
+            $table->string('id_model_mobil')->nullable(false);
+            $table->unsignedBigInteger('durasi_tarif')->nullable(false);
+            $table->unsignedBigInteger('nominal')->nullable(false);
             $table->timestamps();
             //FK ID MOBIL
             $table->foreign('id_mobil')->references('id_mobil')->on('mobil')

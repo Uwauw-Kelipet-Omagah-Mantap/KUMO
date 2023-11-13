@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admin', function (Blueprint $table) {
-            $table->id('id_admin');
-            $table->unsignedBigInteger('id_perusahaan');
+            $table->string('id_admin')->primary();
+            $table->string('id_perusahaan')->nullable(false);
             $table->string('nama_admin', 50)->nullable(false);
             $table->timestamps();
             //FK

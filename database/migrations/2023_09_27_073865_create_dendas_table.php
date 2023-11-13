@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('denda', function (Blueprint $table) {
-            $table->id('id_denda');
+            $table->string('id_denda')->primary();
             $table->enum('jenis_denda', [
                                             'denda_perlengkapan_hilang',
                                             'denda_kerusakan'
             ])->nullable(false);
-            $table->integer('nominal')->nullable(false);
+            $table->unsignedBigInteger('nominal')->nullable(false);
             $table->timestamps();
         });
     }

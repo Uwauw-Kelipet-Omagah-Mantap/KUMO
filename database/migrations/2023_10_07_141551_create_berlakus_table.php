@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('junction_table', function (Blueprint $table) {
-            $table->id('id_jt');
-            $table->unsignedBigInteger('id_denda');
-            $table->unsignedBigInteger('id_pemeriksaan');
+        Schema::create('berlaku', function (Blueprint $table) {
+            $table->string('id_berlaku')->primary();
+            $table->string('id_denda')->nullable(false);
+            $table->string('id_pemeriksaan')->nullable(false);
             $table->timestamps();
             //FK DENDA
             $table->foreign('id_denda')->references('id_denda')->on('denda')
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('junction_table');
+        Schema::dropIfExists('berlaku');
     }
 };

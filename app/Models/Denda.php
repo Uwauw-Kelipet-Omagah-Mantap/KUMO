@@ -9,6 +9,6 @@ class Denda extends Model
 {
     use HasFactory;
     protected $table = 'denda';
-    protected $guarded = 'id_denda';
-     
+    protected $primaryKey = 'id_denda';
+    protected $fillable = ['id_denda'];   
 }

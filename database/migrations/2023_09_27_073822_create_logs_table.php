@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('logs', function (Blueprint $table) {
-            $table->id('id_log');
+            $table->string('id_log')->primary();
             $table->text('log');
             $table->timestamps();
         });

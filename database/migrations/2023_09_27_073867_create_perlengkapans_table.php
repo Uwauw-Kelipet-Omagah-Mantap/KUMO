@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('perlengkapan', function (Blueprint $table) {
-            $table->id('id_perlengkapan');
-            $table->unsignedBigInteger('id_mobil');
+            $table->string('id_perlengkapan')->primary();
+            $table->string('id_mobil')->nullable(false);
             $table->string('nama_perlengkapan', 25)->nullable(false);
             $table->datetime('tanggal_perlengkapan')->nullable(false);
             $table->text('deskripsi_perlengkapan')->nullable(false);
@@ -22,8 +22,11 @@ return new class extends Migration
                 'ada_kerusakan',
                 'ada_barang_hilang'
             ]);
-            $table->string('foto_perlengkapan')->nullable(false);
+            $table->string('foto_perlengkapan', 50)->nullable(false);
             $table->timestamps();
+            //FK MOBIL
+            $table->foreign('id_mobil')->references('id_mobil')->on('mobil')
+            ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

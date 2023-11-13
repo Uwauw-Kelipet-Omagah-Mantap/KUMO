@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('penyewaan', function (Blueprint $table) {
-            $table->id('id_penyewaan');
-            $table->unsignedBigInteger('id_pemilik_mobil');
-            $table->unsignedBigInteger('id_pelanggan');
-            $table->unsignedBigInteger('id_mobil');
+            $table->string('id_penyewaan')->primary();
+            $table->string('id_pengembalian')->nullable(false);
+            $table->string('id_pelanggan')->nullable(false);
+            $table->string('id_mobil')->nullable(false);
             $table->datetime('tanggal_mulai');
             $table->datetime('tanggal_selesai');
             $table->enum('status_pemesanan', [
@@ -25,11 +25,14 @@ return new class extends Migration
                 'dalam_masa_pengembalian',
                 'sudah_dikembalikan'
             ]);
-            $table->integer('total_biaya');
-            $table->enum('status_pembayaran', ['belum_dibayar', 'sudah_dibayar']);
+            $table->unsignedBigInteger('total_biaya');
+            $table->enum('status_pembayaran', [
+                                                'belum_dibayar', 
+                                                'sudah_dibayar'
+                                            ]);
             $table->timestamps();
             //FK PEMILIK MOBIL
-            $table->foreign('id_pemilik_mobil')->references('id_pemilik_mobil')->on('pemilik_mobil')
+            $table->foreign('id_pengembalian')->references('id_pengembalian')->on('pengembalian')
                 ->cascadeOnDelete()->cascadeOnUpdate();
             //FK PELANGGAN
             $table->foreign('id_pelanggan')->references('id_pelanggan')->on('pelanggan')

@@ -9,6 +9,7 @@ class ModelMobil extends Model
 {
     use HasFactory;
     protected $table = 'model_mobil';
+    protected $primaryKey = 'id_model_mobil';
     protected $guarded = ['id_model_mobil'];
 
     //RELATION MOBIL

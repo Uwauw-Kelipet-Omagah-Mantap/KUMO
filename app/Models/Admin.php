@@ -9,11 +9,19 @@ class Admin extends Model
 {
     use HasFactory;
     protected $table = 'admin';
-    protected $guarded = ['id_admin', 'created_at', 'updated_at'];
+    protected $primaryKey = 'id_admin';
+    protected $guarded = ['id_admin'] ;
+    public $timestamps = true;
 
-    // RELATION
+    //RELATION PERUSAHAAN 
     public function perusahaan()
     {
         return $this->belongsTo(Perusahaan::class, 'id_perusahaan', 'id_perusahaan');
+    }
+
+    //RELATION AKUN
+    public function akun()
+    {
+        return $this->hasOne(Akun::class, 'id_admin', 'id_admin');
     }
 }

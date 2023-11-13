@@ -9,11 +9,12 @@ class Perusahaan extends Model
 {
     use HasFactory;
     protected $table = 'perusahaan';
+    protected $primaryKey = 'id_perusahaan';
     protected $guarded = ['id_perusahaan'];
 
     // RELATION
     public function admin()
     {
-        return $this->hasMany(Admin::class,'id_perusahaan','id_perusahaan');
+        return $this->hasMany(Admin::class,'id_admin','id_admin');
     }
 }

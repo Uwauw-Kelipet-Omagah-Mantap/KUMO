@@ -9,7 +9,8 @@ class Pelanggan extends Model
 {
     use HasFactory;
     protected $table = 'pelanggan';
-    protected $guarded = ['id_pelanggan', 'created_at', 'updated_at'];
+    protected $primaryKey = ['id_pelanggan'];
+    protected $guarded = ['id_pelanggan'];
 
     // RELATION ULASAN
     public function ulasan()
@@ -21,5 +22,11 @@ class Pelanggan extends Model
     public function penyewaan()
     {
         return $this->hasMany(Penyewaan::class, 'id_penyewaan', 'id_penyewaan');
+    }
+
+    //RELATION AKUN
+    public function akun()
+    {
+        return $this->hasOne(Akun::class,'id_akun', 'id_akun');
     }
 }

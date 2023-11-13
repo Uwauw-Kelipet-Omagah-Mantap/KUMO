@@ -12,16 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('laporan_pemeriksaan', function (Blueprint $table) {
-            $table->id('id_pemeriksaan');
-            $table->unsignedBigInteger('id_perlengkapan');
+            $table->string('id_pemeriksaan')->primary();
+            $table->string('id_perlengkapan')->nullable(false);
             $table->text('deskripsi_pemeriksaan')->nullable(false);
-            $table->enum('status_perlengkapan', [
+            $table->enum('status_pemeriksaan', [
                                                     'menunggu',
                                                     'dalam_proses',
                                                     'selesai',   
                                                 ]);
-            $table->string('foto_pemeriksaan')->nullable(false);
+            $table->string('foto_pemeriksaan', 50)->nullable(false);
             $table->timestamps();
+            //FK PERLENGKAPAN
+            $table->foreign('id_perlengkapan')->references('id_perlengkapan')->on('perlengkapan')
+            ->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
