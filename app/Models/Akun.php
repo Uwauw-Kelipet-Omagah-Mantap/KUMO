@@ -9,8 +9,8 @@ class Akun extends Model
 {
     use HasFactory;
     protected $table = 'akun';
-    protected $primaryKey = 'email';
-    protected $guarded = ['email'];
+    protected $primaryKey = 'username';
+    protected $guarded = ['username'];
 
     //RELATION ADMIN
     public function admin()

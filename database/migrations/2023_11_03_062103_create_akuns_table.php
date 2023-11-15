@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('akun', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->string('username')->primary();
             $table->string('id_admin')->nullable(false);
             $table->string('id_pelanggan')->nullable(false);
             $table->string('id_pemilik')->nullable(false);
