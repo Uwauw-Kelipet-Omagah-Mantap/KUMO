@@ -4,64 +4,40 @@
         <title>@yield('title')</title>
         @yield('header')
         <style>
-            /* Menetapkan tinggi halaman agar sesuai dengan konten */
-            html, body {
-                height: 100%;
-            }
-    
-            /* Menetapkan warna latar belakang sidebar dan mengatur lebar sidebar */
-            .sidebar {
-                background-color: #f8f9fa;
-                width: 250px;
-                position: fixed;
-                height: 100%;
-                padding-top: 20px;
-            }
-    
-            /* Menetapkan warna latar belakang halaman konten */
-            .content {
-                margin-left: 250px;
-                padding: 20px;
-            }
-    
-            /* Menetapkan margin kanan pada formulir agar sesuai dengan halaman konten */
-            .login-form {
-                margin-right: 20px;
-            }
-    
-            /* Menetapkan padding pada gambar agar tidak menyentuh tepi sidebar */
-            .sidebar img {
-                padding: 0 20px;
-                max-width: 100%;
+            .img {
                 border-radius: 50%;
-                margin-bottom: 10px;
+                width: 40px; 
+                height: 40px; 
+                object-fit: cover;
             }
-    
-            /* Menetapkan gaya untuk nama pengguna */
-            .username {
-                font-weight: bold;
-                margin-bottom: 10px;
-            }
-    
-            /* Menetapkan gaya untuk daftar mobil */
-            .car-list {
-                list-style: none;
-                padding: 0;
-            }
-    
-            .car-list li {
-                margin-bottom: 5px;
+
+            .btn btn-danger {
+                margin-right: 5;
             }
         </style>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3 sidebar">
-                    
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+            <div class="container-fluid">
+                <img src="logo.svg" alt="logo">
+                <a class="navbar-brand" href="#">NUSA WHEELS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{url('/dashboard')}}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/dashboard/manage-user')}}">Daftar Mobil</a>
+                        </li>
+                    </ul>
+                    <a href="" class="btn btn-danger me-4" type="submit">Logout</a>
+                    <img class="img" src="brocklesnar.jpg" alt="">
                 </div>
             </div>
-        </div>
+        </nav>
         <div class="container">
             @yield('content')
         </div>
