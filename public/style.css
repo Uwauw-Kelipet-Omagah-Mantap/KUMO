@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Kartu mobil */
+.car-card {
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px;
+}
+
+/* Gambar mobil dalam kartu */
+.car-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Konten dalam kartu */
+.car-card-content {
+    padding: 16px;
+}
+
+/* Judul mobil */
+.car-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Deskripsi mobil */
+.car-description {
+    color: #666;
+    margin-bottom: 12px;
+}
+
+/* Harga mobil */
+.car-price {
+    color: #4CAF50;
+    font-size: 16px;
+    font-weight: bold;
+}

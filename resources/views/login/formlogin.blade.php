@@ -2,10 +2,6 @@
     <head>
         @vite(['resources/sass/app.scss','resources/js/app.js'])
         <style>
-            body {
-                background-color: #7fb2ff
-            }
-
             h3 {
                 font-weight: bold;
                 color: #0d6efd;
