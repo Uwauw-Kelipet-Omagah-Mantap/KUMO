@@ -1,5 +1,3 @@
-@extends('layout.layout')
-@section('title', 'Halaman Dashboard')
 <html>
     <head>
         @vite(['resources/sass/app.scss','resources/js/app.js'])
@@ -60,7 +58,7 @@
         </div>
     </nav>
 
-    <div class="container vh-100">
+    <div class="container vh-100 vw-100">
     <div class="content m-0">
         <h1><b>BERKENDARA DENGAN <p class="text-primary">KEPERCAYAAN</p> HARGA YANG TERJANGKAU</b></h1>
         <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 

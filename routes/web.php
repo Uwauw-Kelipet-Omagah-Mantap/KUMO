@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AkunController;
+use App\Http\Controllers\TabelAkunController;
 use App\Http\Controllers\DaftarMobilController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/daftarmobil', [DaftarMobilController::class,'index'])->name('daftarmobil.index');
+    Route::get('/tabelakun', [TabelAkunController::class, 'index'])->name('akun.index');
 });
 
 Route::prefix('auth')->group(function () {
