@@ -5,6 +5,10 @@
         <title>@yield('title')</title>
         @yield('header')
         <style>
+            body {
+                background-color: rgb(0, 149, 255);
+            }
+
             .img {
                 border-radius: 50%;
                 width: 40px; 

@@ -12,7 +12,7 @@ class Pengembalian extends Model
     protected $primaryKey = 'id_pengembalian';
     protected $guarded = ['id_pengembalian'];
     
-    //RELATION PENYEWAAN
+    //RELATION PENYEWAAN`
     public function penyewaan()
     {
         return $this->hasOne(Penyewaan::class, 'id_penyewaan', 'id_penyewaan');
