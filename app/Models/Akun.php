@@ -10,7 +10,8 @@ class Akun extends Model
     use HasFactory;
     protected $table = 'akun';
     protected $primaryKey = 'username';
-    protected $guarded = ['username'];
+    protected $fillable = ['username'];
+    protected $hidden = ['password'];
 
     //RELATION ADMIN
     public function admin()

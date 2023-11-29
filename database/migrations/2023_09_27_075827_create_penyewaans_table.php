@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('id_penyewaan')->primary();
             $table->string('id_pengembalian')->nullable(false);
             $table->string('id_pelanggan')->nullable(false);
-            $table->string('id_mobil')->nullable(false);
+            $table->unsignedBigInteger('id_mobil')->nullable(false);
             $table->datetime('tanggal_mulai');
             $table->datetime('tanggal_selesai');
             $table->enum('status_pemesanan', [

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ulasan', function (Blueprint $table) {
             $table->string('id_ulasan')->primary();
-            $table->string('id_mobil')->nullable(false);
+            $table->unsignedBigInteger('id_mobil')->nullable(false);
             $table->string('id_pelanggan')->nullable(false);
             $table->text('ulasan');
             $table->unsignedTinyInteger('rating');

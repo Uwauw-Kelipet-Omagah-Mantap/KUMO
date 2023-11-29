@@ -12,15 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mobil', function (Blueprint $table) {
-            $table->string('id_mobil')->primary();
+            $table->unsignedBigInteger('id_mobil', true);
             $table->string('id_pemilik_mobil')->nullable(false);
             $table->string('id_model_mobil')->nullable(false);
-            $table->string('no_polisi', 10)->nullable(false);
-            $table->enum('status_mobil', [
-                                            'tersedia',
-                                            'sedang disewa'
-                                        ])->nullable(false);
-            $table->string('foto_stnk', 50)->nullable(false);
+            // $table->string('no_polisi', 10)->nullable(false);
+            // $table->enum('status_mobil', [
+            //                                 'tersedia',
+            //                                 'sedang disewa'
+            //                             ])->nullable(false);
+            // $table->string('foto_stnk', 50)->nullable(false);
+            $table->string('foto_mobil', 50)->nullable(false);
+            $table->integer('harga_mobil')->nullable(false);
             $table->timestamps();
             //FK PEMILIK MOBIL
             $table->foreign('id_pemilik_mobil')->references('id_pemilik_mobil')->on('pemilik_mobil')
@@ -30,7 +32,6 @@ return new class extends Migration
                     ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
-
     /**
      * Reverse the migrations.
      */

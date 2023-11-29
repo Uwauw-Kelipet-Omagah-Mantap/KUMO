@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('username')->primary();
             $table->string('id_admin')->nullable(false);
             $table->string('id_pelanggan')->nullable(false);
-            $table->string('id_pemilik')->nullable(false);
+            $table->string('id_pemilik_mobil')->nullable(false);
             $table->string('password')->nullable(false);
             $table->enum('role', [
                 'admin',
@@ -23,6 +23,15 @@ return new class extends Migration
                 'pemilik_mobil'
             ]);
             $table->timestamps();
+            //FK ADMIN
+            $table->foreign('id_admin')->references('id_admin')->on('admin')
+                    ->cascadeOnDelete()->cascadeOnUpdate();
+            //FK PELANGGAN
+            $table->foreign('id_pelanggan')->references('id_pelanggan')->on('pelanggan')
+                    ->cascadeOnDelete()->cascadeOnUpdate();
+            //FK PEMILIK MOBIL
+            $table->foreign('id_pemilik_mobil')->references('id_pemilik_mobil')->on('pemilik_mobil')
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
