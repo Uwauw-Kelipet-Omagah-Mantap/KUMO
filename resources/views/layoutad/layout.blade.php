@@ -4,6 +4,18 @@
         @vite(['resources/sass/app.scss','resources/js/app.js'])
         <title>@yield('title')</title>
         @yield('header')
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Livewire.on('show-toast', ({ type, message }) => {
+                    Swal.fire({
+                        icon: type,
+                        title: message,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+                });
+            });
+        </script>
         <style>
             body {
                 background-color: rgb(0, 149, 255);
@@ -32,13 +44,24 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{route('dashboard.index')}}">Dashboard</a>
+                            <a class="nav-link" aria-current="page" href="{{route('dashboardpm.index')}}">Dashboard</a>
                         </li>
                         <li class="nav-item">                   
-                            <a class="nav-link" href="{{route('daftarmobil.index')}}">Daftar Mobil</a>
+                            <a class="nav-link" href="{{route('pengguna.index')}}">Manajemen User</a>
                         </li>                       
                     </ul>
-                    <a href="" class="btn btn-danger me-4" type="submit">Logout</a>
+                    {{-- START LOGOUT --}}
+                    @if(Auth::check())
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <button class="btn btn-danger">Logout</button>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    @else
+                    <a href="{{ route('login') }}">Login</a>
+                    @endif
+                    {{-- END LOGOUT --}}
                     <img class="img" src="{{asset('brocklesnar.jpg')}}" alt="">
                 </div>
             </div>

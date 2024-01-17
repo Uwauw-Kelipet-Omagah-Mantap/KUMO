@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('mobil', function (Blueprint $table) {
             $table->unsignedBigInteger('id_mobil', true);
-            $table->string('id_pemilik_mobil')->nullable(false);
-            $table->string('id_model_mobil')->nullable(false);
+            $table->unsignedBigInteger('id_pemilik_mobil')->nullable(false);
+            $table->unsignedBigInteger('id_model_mobil', false)->nullable();
             // $table->string('no_polisi', 10)->nullable(false);
             // $table->enum('status_mobil', [
             //                                 'tersedia',

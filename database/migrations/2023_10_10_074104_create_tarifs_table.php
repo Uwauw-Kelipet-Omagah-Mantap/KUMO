@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tarif', function (Blueprint $table) {
             $table->string('id_tarif')->primary();
             $table->unsignedBigInteger('id_mobil')->nullable(false);
-            $table->string('id_model_mobil')->nullable(false);
+            $table->unsignedBigInteger('id_model_mobil', false);
             $table->unsignedBigInteger('durasi_tarif')->nullable(false);
             $table->unsignedBigInteger('nominal')->nullable(false);
             $table->timestamps();
