@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layoutpm.layout')
 @section('title', 'Daftar Mobil')
 @section('content')
 
@@ -21,7 +21,8 @@
                             <tr>
                                 <th>NO</th>
                                 <th>ID PEMILIK</th>
-                                <th>ID MODEL MOBIL</th>
+                                <th>TIPE MOBIL</th>
+                                <th>MERK MOBIL</th>
                                 <th>FOTO MOBIL</th>
                                 <th>HARGA</th>
                                 <th>AKSI</th>
@@ -33,6 +34,7 @@
                                 @foreach ( $mobil as $m )
                                     <tr>
                                         <td>{{ $no++ }}</td>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td>
@@ -55,7 +57,7 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <a href="{{route('daftarmobil.tambah')}}"><button class="btn btn-success">Tambah</button></a>
+                    <a href="{{route('daftarmobilpm.tambah')}}"><button class="btn btn-success">Tambah</button></a>
                 </div>
             </div>
         </div>

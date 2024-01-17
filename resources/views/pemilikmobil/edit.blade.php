@@ -13,24 +13,26 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <span class="h3">Tambah Mobil</span>
+                    <span class="h3">Edit Pemilik</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('daftarmobil.simpan')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('pemilikmobil.update', $pm->nama_pemilik) }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <hr>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>Id Pemilik</label>
-                                    <input type="text" class="form-control mb-3" name="id_pemilik_mobil">
-                                    <label>Id Model Mobil</label>
-                                    <input type="text" class="form-control mb-3" name="id_model_mobil">
-                                    <label>Foto Mobil</label>
-                                    <input type="file" class="form-control mb-3" name="foto_mobil">
-                                    <label>Harga</label>
-                                    <input type="text" class="form-control mb-3" name="harga_mobil" placeholder="Masukkan harga">
+                                    <label>Nama</label>
+                                    <input type="username" class="form-control mb-3" name="nama_pemilik">
+                                    <label>Alamat</label>
+                                    <input type="text" class="form-control mb-3" name="alamat_pemilik">
+                                    <label>Nomor Telepon</label>
+                                    <input type="text" class="form-control mb-3" name="nomor_telepon_pemilik">
+                                    <label>Foto KTP</label>
+                                    <input type="file" class="form-control mb-3" name="foto_ktp_pemilik">
                                     @csrf
                                 </div>
                             </div>
