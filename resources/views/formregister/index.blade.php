@@ -18,7 +18,8 @@
                             <h3 class="text-center">REGISTER</h3>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="POST" action="{{ route('register') }}">
+                                @csrf
                                 <div class="form-group">
                                     <label for="username">Username:</label>
                                     <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username" required>
@@ -27,7 +28,7 @@
                                     <label for="password">Password:</label>
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" required>
                                 </div>
-                                <p>Have an account? <a href="{{route('login.formlogin')}}">Login</a></p>
+                                <p>Have an account? <a href="{{route('formlogin.index')}}">Login</a></p>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block">Register</button>
                                 </div>
