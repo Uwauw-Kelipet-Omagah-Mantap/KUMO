@@ -6,7 +6,6 @@ use App\Http\Controllers\DashboardADController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PemilikMobilController;
 use App\Http\Controllers\LandingPageController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
