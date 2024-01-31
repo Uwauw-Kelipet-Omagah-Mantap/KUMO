@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layoutpm.layout')
 @section('title', 'Tambah Mobil')
 @section('content')
 

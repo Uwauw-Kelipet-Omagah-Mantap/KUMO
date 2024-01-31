@@ -47,7 +47,7 @@
                             <a class="nav-link" aria-current="page" href="{{route('dashboardad.index')}}">Dashboard</a>
                         </li>
                         <li class="nav-item">                   
-                            <a class="nav-link" href="{{route('pengguna.index')}}">Manajemen User</a>
+                            <a class="nav-link" href="">Daftar Mobil</a>
                         </li>                       
                     </ul>
                     {{-- START LOGOUT --}}
