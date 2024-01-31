@@ -3,6 +3,7 @@ use App\Http\Controllers\AkunController;
 use App\Http\Controllers\DaftarMobilPMController;
 use App\Http\Controllers\DashboardPMController;
 use App\Http\Controllers\DashboardADController;
+use App\Http\Controllers\DashboardPLController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PemilikMobilController;
 use App\Http\Controllers\LandingPageController;
@@ -34,23 +35,29 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::prefix('/pemilik-mobil')->middleware(['auth', 'CheckRole'])->group(function () {
+Route::prefix('/pemilik-mobil')->middleware(['auth', 'checkrole:pemilik_mobil'])->group(function () {
     // Rute yang hanya dapat diakses oleh pemilik mobil
     Route::get('/dashboard', [DashboardPMController::class, 'index'])->name('dashboardpm.index');
+    // Route::get('/pemilikmobil', [PemilikMobilController::class, 'index'])->name('pemilikmobil.index');
     Route::get('/daftar-mobil', [DaftarMobilPMController::class, 'index'])->name('daftarmobilpm.index');
     Route::get('/daftar-mobil/tambah', [DaftarMobilPMController::class, 'tambah'])->name('daftarmobilpm.tambah');
     Route::post('/daftar-mobil/simpan', [DaftarMobilPMController::class, 'simpan'])->name('daftarmobilpm.simpan');
 });
 
-Route::group(['middleware' => 'checkrole:admin'], function () {
+Route::prefix('/admin')->middleware(['auth', 'checkrole:admin'])->group(function () {
     // Rute yang hanya dapat diakses oleh Admin
-    Route::get('/admin/dashboard', [DashboardADController::class, 'index'])->name('dashboardad.index');
-    Route::get('/admin/manage-user', [AkunController::class, 'index'])->name('pengguna.index');
-    Route::get('/admin/manage-user/tambah', [AkunController::class, 'tambah'])->name('pengguna.tambah');
-    Route::post('/admin/manage-user/simpan', [AkunController::class, 'simpan'])->name('pengguna.simpan');
-    Route::get('/admin/manage-user/edit/{id}', [AkunController::class, 'edit'])->name('pengguna.edit');
-    Route::post('/admin/manage-user/edit/{id}', [AkunController::class, 'update'])->name('pengguna.update');
-    Route::delete('/admin/manage-user/destroy/{id}', [AkunController::class, 'destroy'])->name('pengguna.destroy');
+    Route::get('/dashboard', [DashboardADController::class, 'index'])->name('dashboardad.index');
+    Route::get('/manage-user', [AkunController::class, 'index'])->name('pengguna.index');
+    Route::get('/manage-user/tambah', [AkunController::class, 'tambah'])->name('pengguna.tambah');
+    Route::post('/manage-user/simpan', [AkunController::class, 'simpan'])->name('pengguna.simpan');
+    Route::get('/manage-user/edit/{id}', [AkunController::class, 'edit'])->name('pengguna.edit');
+    Route::post('/manage-user/edit/{id}', [AkunController::class, 'update'])->name('pengguna.update');
+    Route::delete('/manage-user/destroy/{id}', [AkunController::class, 'destroy'])->name('pengguna.destroy');
+});
+
+Route::prefix('/pelanggan')->middleware(['auth', 'checkrole:pelanggan'])->group(function () {
+    // Rute yang hanya dapat diakses oleh pemilik mobil
+    Route::get('/dashboard', [DashboardPLController::class, 'index'])->name('dashboardpl.index');
 });
 
 
