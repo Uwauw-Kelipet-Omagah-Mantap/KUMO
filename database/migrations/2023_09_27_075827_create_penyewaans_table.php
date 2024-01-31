@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('status_pemesanan', [
                 'sedang_diantar',
                 'sudah_ada_ditujuan',
-                'sedang_dalam_masa_penggunaan',
+                'sedang_dalam_masa_akunan',
                 'dalam_masa_pengembalian',
                 'sudah_dikembalikan'
             ]);

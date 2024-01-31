@@ -1,6 +1,6 @@
 <?php
-use App\Http\Controllers\AkunController;
 use App\Http\Controllers\TabelAkunController;
+use App\Http\Controllers\TabelTabelAkunController;
 use App\Http\Controllers\DaftarMobilController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PemilikMobil;
@@ -28,6 +28,12 @@ Route::get('/', function () {
 Route::prefix('dashboard')
         ->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/manage-user', [TabelAkunController::class, 'index'])->name('akun.index');
+    Route::get('/manage-user/tambah', [TabelAkunController::class, 'tambah'])->name('akun.tambah');
+    Route::get('/manage-user/edit/{id}', [TabelAkunController::class, 'edit'])->name('akun.edit');
+    Route::post('/manage-user/simpan', [TabelAkunController::class, 'simpan'])->name('akun.simpan');
+    Route::post('/manage-user/edit/{id}', [TabelAkunController::class, 'update'])->name('akun.update');
+    Route::delete('/manage-user/destroy/{id}', [TabelAkunController::class, 'destroy'])->name('akun.destroy');
     Route::get('/daftarmobil', [DaftarMobilController::class, 'index'])->name('daftarmobil.index');
     Route::get('/daftarmobil/tambah', [DaftarMobilController::class, 'tambah'])->name('daftarmobil.tambah');
     Route::post('/daftarmobil/simpan', [DaftarMobilController::class, 'simpan'])->name('daftarmobil.simpan');
@@ -36,7 +42,7 @@ Route::prefix('dashboard')
 });
 
 Route::prefix('auth')->group(function () {
-    Route::get('/', [AkunController::class, 'index'])->name('login.formlogin');
+    Route::get('/', [TabelAkunController::class, 'index'])->name('login.formlogin');
     Route::get('/register', [RegisterController::class, 'index'])->name('register.formregister');
 });
 

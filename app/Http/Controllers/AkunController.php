@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Akun;
 use Illuminate\Http\Request;
 
-class AkunController extends Controller
+class TabelAkunController extends Controller
 {
     public function __construct()
     {
