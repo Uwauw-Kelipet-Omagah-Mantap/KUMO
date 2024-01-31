@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('perlengkapan', function (Blueprint $table) {
             $table->string('id_perlengkapan')->primary();
-            $table->string('id_mobil')->nullable(false);
+            $table->unsignedBigInteger('id_mobil')->nullable(false);
             $table->string('nama_perlengkapan', 25)->nullable(false);
             $table->datetime('tanggal_perlengkapan')->nullable(false);
             $table->text('deskripsi_perlengkapan')->nullable(false);
