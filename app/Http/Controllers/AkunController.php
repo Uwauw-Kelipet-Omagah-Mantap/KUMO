@@ -23,10 +23,7 @@ class AkunController extends Controller
             $query->where('username', 'like', '%' . $search . '%')
                 ->orWhere('role', 'like', '%' . $search . '%');
         })->get();
-        $data = [
-            'user' => Akun::all()
-        ];
-        return view('pengguna.index', $data, compact('user'));
+        return view('pengguna.index', compact('user'));
     }
 
     public function tambah()
@@ -78,6 +75,6 @@ class AkunController extends Controller
        if ($user) {
             $user->delete();
        }
-       return redirect()->route('pengguna.index')->with('success', 'User berhasil di hapus');
+       return redirect()->route('pengguna.index')->with('success', 'User berhasil di dihapus');
     }
 }

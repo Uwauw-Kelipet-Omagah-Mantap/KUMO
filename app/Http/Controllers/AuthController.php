@@ -6,6 +6,7 @@ use App\Models\Akun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -28,7 +29,8 @@ class AuthController extends Controller
             }
         }
 
-        return redirect()->route('formlogin.index')->with('error', 'Login gagal. Periksa kembali username dan password Anda.');
+        Alert::error('Login gagal', 'Periksa kembali username dan password Anda.');
+        return redirect()->route('formlogin.index');
     }
 
     public function showRegisterForm()
@@ -60,6 +62,6 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('formlogin.index');
+        return redirect()->route('formlogin.index')->with('success', 'Anda berhasil logout!');
     }
 }
