@@ -27,10 +27,10 @@ class AuthController extends Controller
             } else if (Auth::user()->role === 'pemilik_mobil') {
                 return redirect()->intended('/pemilik-mobil/dashboard');
             }
+            alert::success('Login Berhasil', 'Selamat Datang.');
         }
 
-        Alert::error('Login gagal', 'Periksa kembali username dan password Anda.');
-        return redirect()->route('formlogin.index');
+        return redirect()->route('formlogin.index')->with('error', 'Login gagal. Periksa kembali username dan password Anda.');
     }
 
     public function showRegisterForm()
@@ -41,27 +41,40 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'username' => 'required|unique:akun',
-            'password' => 'required|min:6',
-            'role' => 'required|in:admin,pelanggan,pemilik_mobil',
+            'username' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6'
         ]);
 
-        $user = Akun::create([
+        $data['username'] = $request->username;
+        $data['email'] = $request->email;
+        $data['password'] = Hash::make($request->password);
+        $data['role'] = 'admin';
+
+        Akun::create($data);
+
+        $login = [
             'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-        ]);
+            'password' => $request->password,
+        ];
 
-        // Lakukan tindakan setelah registrasi berhasil, misalnya autentikasi atau redirect ke halaman login
-        // ...
-
-        return redirect()->route('formlogin.index')->with('success', 'Registrasi berhasil. Silakan login.');
+        if (Auth::attempt($login)) {
+            if (Auth::user()->role === 'admin') {
+                return redirect()->intended('/admin/dashboard');
+            } else if (Auth::user()->role === 'pelanggan') {
+                return redirect()->intended('/pelanggan/dashboard');
+            } else if (Auth::user()->role === 'pemilik_mobil') {
+                return redirect()->intended('/pemilik-mobil/dashboard');
+            }
+            alert::success('Login Berhasil', 'Selamat Datang.');
+        }
     }
+
 
     public function logout()
     {
         Auth::logout();
 
-        return redirect()->route('formlogin.index')->with('success', 'Anda berhasil logout!');
+        return redirect()->route('formlogin.index');
     }
 }
