@@ -1,13 +1,19 @@
 <?php
 use App\Http\Controllers\AkunController;
+use App\Http\Controllers\DaftarMobilADController;
 use App\Http\Controllers\DaftarMobilPMController;
 use App\Http\Controllers\DashboardPMController;
 use App\Http\Controllers\DashboardADController;
 use App\Http\Controllers\DashboardPLController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InformasiMobilADController;
+use App\Http\Controllers\InformasiPembayaranAD;
+use App\Http\Controllers\ManajemenPembayaranADController;
+use App\Http\Controllers\ManajemenUlasanAD;
 use App\Http\Controllers\PemilikMobilController;
 use App\Http\Controllers\LandingPageController;
 
+use App\Http\Controllers\TransaksiPembayaranAD;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +45,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::prefix('/pemilik-mobil')->middleware(['auth', 'checkrole:pemilik_mobil'])->group(function () {
     // Rute yang hanya dapat diakses oleh pemilik mobil
     Route::get('/dashboard', [DashboardPMController::class, 'index'])->name('dashboardpm.index');
+
     // Route::get('/pemilikmobil', [PemilikMobilController::class, 'index'])->name('pemilikmobil.index');
     Route::get('/daftar-mobil', [DaftarMobilPMController::class, 'index'])->name('daftarmobilpm.index');
     Route::get('/daftar-mobil/tambah', [DaftarMobilPMController::class, 'tambah'])->name('daftarmobilpm.tambah');
@@ -48,12 +55,34 @@ Route::prefix('/pemilik-mobil')->middleware(['auth', 'checkrole:pemilik_mobil'])
 Route::prefix('/admin')->middleware(['auth', 'checkrole:admin'])->group(function () {
     // Rute yang hanya dapat diakses oleh Admin
     Route::get('/dashboard', [DashboardADController::class, 'index'])->name('dashboardad.index');
+
+    //Rute manage user admin
     Route::get('/manage-user', [AkunController::class, 'index'])->name('pengguna.index');
     Route::get('/manage-user/tambah', [AkunController::class, 'tambah'])->name('pengguna.tambah');
     Route::post('/manage-user/simpan', [AkunController::class, 'simpan'])->name('pengguna.simpan');
     Route::get('/manage-user/edit/{id}', [AkunController::class, 'edit'])->name('pengguna.edit');
     Route::post('/manage-user/edit/{id}', [AkunController::class, 'update'])->name('pengguna.update');
     Route::delete('/manage-user/destroy/{id}', [AkunController::class, 'destroy'])->name('pengguna.destroy');
+
+    //Rute manage mobil admin
+    Route::get('/manage-mobil', [DaftarMobilADController::class, 'index'])->name('mobilad.index');
+    Route::post('/manage-mobil/simpan', [DaftarMobilADController::class, 'simpan'])->name('mobilad.simpan');
+
+    //Rute informasi mobil admin
+    Route::get('/manage-informasi-mobil', [InformasiMobilADController::class, 'index'])->name('informasimobilad.index');
+
+    //Rute pembayaran mobil admin
+    Route::get('/manage-pembayaran', [ManajemenPembayaranADController::class, 'index'])->name('manajemenpembayaranad.index');
+
+    //Rute transaksi pembayaran mobil admin
+    Route::get('/manage-riwayat-transaksi', [TransaksiPembayaranAD::class, 'index'])->name('transaksipembayaranad.index');
+
+    //Rute ulasan mobil admin
+    Route::get('/manage-ulasan', [ManajemenUlasanAD::class, 'index'])->name('ulasanad.index');
+
+
+
+
 });
 
 Route::prefix('/pelanggan')->middleware(['auth', 'checkrole:pelanggan'])->group(function () {
