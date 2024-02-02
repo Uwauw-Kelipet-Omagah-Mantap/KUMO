@@ -15,7 +15,7 @@
                     icon: 'success',
                     timer: 1000,
                     showConfirmButton: false
-                })
+                }) 
         </script>
     </head>
     <body>

@@ -44,11 +44,8 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{route('dashboardad.index')}}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">                   
-                            <a class="nav-link" href="">Daftar Mobil</a>
-                        </li>                       
+                            <a class="nav-link" aria-current="page" href="{{route('dashboardpl.index')}}">Dashboard</a>
+                        </li>                    
                     </ul>
                     {{-- START LOGOUT --}}
                     @if(Auth::check())

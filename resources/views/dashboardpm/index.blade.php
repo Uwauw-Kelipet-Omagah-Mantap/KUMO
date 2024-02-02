@@ -92,11 +92,10 @@
                                             <td></td>
                                             <td class="text-capitalize"></td>
                                             <td>
-                                                <a href="{{ url('/admin') }}/manage-user/edit/">
+                                                <a href="">
                                                     <button class="btn btn-primary">Edit</button>
                                                 </a>
-                                                <form action="{{ url('/admin', ['manage-user', 'destroy',]) }}" method="POST" class="d-inline">
-                                                    @method('DELETE')
+                                                <form action="" method="POST" class="d-inline">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
                                                 </form>
@@ -126,11 +125,10 @@
                                             <td></td>
                                             <td class="text-capitalize"></td>
                                             <td>
-                                                <a href="{{ url('/admin') }}/manage-user/edit/">
+                                                <a href="">
                                                     <button class="btn btn-primary">Edit</button>
                                                 </a>
-                                                <form action="{{ url('/admin', ['manage-user', 'destroy',]) }}" method="POST" class="d-inline">
-                                                    @method('DELETE')
+                                                <form action="" method="POST" class="d-inline">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
                                                 </form>
@@ -159,11 +157,10 @@
                                             <td></td>
                                             <td class="text-capitalize"></td>
                                             <td>
-                                                <a href="{{ url('/admin') }}/manage-user/edit/">
+                                                <a href="">
                                                     <button class="btn btn-primary">Edit</button>
                                                 </a>
-                                                <form action="{{ url('/admin', ['manage-user', 'destroy',]) }}" method="POST" class="d-inline">
-                                                    @method('DELETE')
+                                                <form action="" method="POST" class="d-inline">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
                                                 </form>
@@ -175,11 +172,35 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('pengguna.tambah') }}">
-                            <button class="btn btn-success">Tambah</button>
-                        </a>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahMobilModal">Tambah</button>
                     </div>
-                      </div>
+                    <!-- Modal Tambah Mobil -->
+                    <div class="modal fade" id="tambahMobilModal" tabindex="-1" aria-labelledby="tambahMobilModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="tambahMobilModalLabel">Tambah Mobil</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form Tambah Mobil -->
+                                    <form method="post" action="{{ url('/admin/manage-mobil/simpan') }}">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="merk_mobil" class="form-label">Merk Mobil</label>
+                                            <input type="text" class="form-control" id="merk_mobil" name="merk_mobil" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="harga" class="form-label">Harga</label>
+                                            <input type="number" class="form-control" id="harga" name="harga" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
             </div>
         </div>
     </div>

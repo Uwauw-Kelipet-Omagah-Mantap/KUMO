@@ -36,7 +36,7 @@ class AkunController extends Controller
 
     public function simpan(Request $request)
     {
-        $data = $request->validate([
+        $data = $request->validate([ 
             'username' => 'required',
             'password' => 'required',
             'role' => 'required',
