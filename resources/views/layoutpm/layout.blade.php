@@ -47,8 +47,11 @@
                             <a class="nav-link" aria-current="page" href="{{route('dashboardpm.index')}}">Dashboard</a>
                         </li>
                         <li class="nav-item">                   
+                            <a class="nav-link" href="{{route('penggunapm.index')}}">Manajemen User</a>
+                        </li>   
+                        <li class="nav-item">                   
                             <a class="nav-link" href="{{route('daftarmobilpm.index')}}">Daftar Mobil</a>
-                        </li>                       
+                        </li>                      
                     </ul>
                     {{-- START LOGOUT --}}
                     @if(Auth::check())

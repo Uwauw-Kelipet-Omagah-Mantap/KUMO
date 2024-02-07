@@ -2,6 +2,7 @@
 @section('title', 'Manajemen Mobil')
 @section('content')
 
+
     <style>
         .container {
             margin: 100px;
@@ -170,39 +171,72 @@
                                 <button class="btn btn-success" data-bs-toggle="modal"
                                     data-bs-target="#tambahMobilModal">Tambah</button>
                             </div>
-                            <!-- Modal Tambah Mobil -->
+                            <!-- A Modal Tambah Mobil -->
                             <div class="modal fade" id="tambahMobilModal" tabindex="-1"
-                                aria-labelledby="tambahMobilModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="tambahMobilModalLabel">Tambah Mobil</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Form Tambah Mobil -->
-                                            <form method="post" action="{{ route('mobilad.simpan') }}">
-                                                @csrf
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label">Tipe Mobil</label>
-                                                    <input type="text" class="form-control" id="merk_mobil"
-                                                        name="tipe_mobil" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="merk_mobil" class="form-label">Merk Mobil</label>
-                                                    <input type="text" class="form-control" id="merk_mobil"
-                                                        name="merk_mobil" required>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </form>
-                                        </div>
+                            aria-labelledby="tambahMobilModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="tambahMobilModalLabel">Tambah Mobil</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form Tambah Mobil -->
+                                        <form method="post" action="{{ route('mobilad.simpan') }}">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Tipe Mobil</label>
+                                                <select name="tipe" id="tipe" class="form-select input">
+                                                    <option value="">Pilih</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Merk Mobil</label>
+                                                <select name="merk" id="merk" class="form-select input">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </form>
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+        {{-- <script>
+            // Daftar merk mobil untuk setiap tipe mobil
+            let sedan = ["Toyota", "Honda", "Nissan"];
+            let suv = ["Ford", "Chevrolet", "Jeep"];
+            let minibus = ["Mercedes", "Volkswagen", "Iveco"];
+            let truck = ["Isuzu", "Volvo", "Scania"];
+        
+            let slct1 = document.getElementById("slct1");
+            let slct2 = document.getElementById("slct2");
+        
+            slct1.addEventListener("change", function () {
+                slct2.innerHTML = "<option></option>";
+                if (this.value == "Sedan") {
+                    addToSlct2(sedan);
+                }
+                if (this.value == "Suv") {
+                    addToSlct2(suv);
+                }
+            });
+        
+            function addToSlct2(arr) {
+                arr.forEach(function (item) {
+                    let option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+                    slct2.appendChild(option);
+                });
+            }
+        </script> --}}
+        

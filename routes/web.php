@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AkunController;
+use App\Http\Controllers\AkunPMController;
 use App\Http\Controllers\DaftarMobilADController;
 use App\Http\Controllers\DaftarMobilPMController;
 use App\Http\Controllers\DashboardPMController;
@@ -50,6 +51,15 @@ Route::prefix('/pemilik-mobil')->middleware(['auth', 'checkrole:pemilik_mobil'])
     Route::get('/daftar-mobil', [DaftarMobilPMController::class, 'index'])->name('daftarmobilpm.index');
     Route::get('/daftar-mobil/tambah', [DaftarMobilPMController::class, 'tambah'])->name('daftarmobilpm.tambah');
     Route::post('/daftar-mobil/simpan', [DaftarMobilPMController::class, 'simpan'])->name('daftarmobilpm.simpan');
+
+    //Rute manage user admin
+    Route::get('/manage-user', [PemilikMobilController::class, 'index'])->name('penggunapm.index');
+    Route::get('/manage-user/tambah', [PemilikMobilController::class, 'tambah'])->name('penggunapm.tambah');
+    Route::post('/manage-user/simpan', [PemilikMobilController::class, 'simpan'])->name('penggunapm.simpan');
+    Route::get('/manage-user/edit/{id}', [PemilikMobilController::class, 'edit'])->name('penggunapm.edit');
+    Route::post('/manage-user/edit/{id}', [PemilikMobilController::class, 'update'])->name('penggunapm.update');
+    Route::delete('/manage-user/destroy/{id}', [PemilikMobilController::class, 'destroy'])->name('penggunapm.destroy');
+
 });
 
 Route::prefix('/admin')->middleware(['auth', 'checkrole:admin'])->group(function () {
