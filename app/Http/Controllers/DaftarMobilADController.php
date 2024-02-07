@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\ModelMobil;
+use App\Models\Tipe;
 
 use Illuminate\Http\Request;
 
 class DaftarMobilADController extends Controller
 {
+
+    
+
     public function index()
     {
         $mobil = ModelMobil::all();
         return view("mobilad.index", compact('mobil'));
     }
+
+    public function getTipe($id){
+        
+    }
+
     public function simpan(Request $request)
     {
         // Validasi input

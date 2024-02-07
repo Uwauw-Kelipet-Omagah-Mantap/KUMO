@@ -42,12 +42,10 @@ class AuthController extends Controller
     {
         $request->validate([
             'username' => 'required',
-            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6'
         ]);
 
         $data['username'] = $request->username;
-        $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
         $data['role'] = 'admin';
 
