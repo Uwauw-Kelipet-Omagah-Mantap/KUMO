@@ -30,7 +30,7 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="minibus-tab" data-bs-toggle="tab"
                                     data-bs-target="#minibus-tab-pane" type="button" role="tab"
-                                    aria-controls="minibus-tab-pane" aria-selected="false">Mini Bus</button>
+                                    aria-controls="minibus-tab-pane" aria-selected="false">Minibus</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="truck-tab" data-bs-toggle="tab"
@@ -58,15 +58,20 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($mobil as $kendaraan)
+                                        @foreach ($mobil->where('tipe_mobil', 'sedan') as $kendaraan)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $kendaraan->tipe_mobil }}</td>
+                                                <td class="text-capitalize">{{ $kendaraan->tipe_mobil }}</td>
                                                 <td class="text-capitalize">{{ $kendaraan->merk_mobil }}</td>
                                                 <td>
                                                     <a href="">
                                                         <button class="btn btn-primary">Detail</button>
                                                     </a>
+                                                    <form action="{{ url('/admin', ['manage-mobil', 'destroy', $kendaraan->id_model_mobil]) }}" method="POST" class="d-inline">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -88,18 +93,23 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        {{-- @foreach ($user as $pengguna) --}}
+                                        @foreach ($mobil->where('tipe_mobil', 'suv') as $kendaraan) 
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-capitalize"></td>
+                                            <td>{{ $no++ }}</td>
+                                            <td class="text-capitalize">{{ $kendaraan->tipe_mobil }}</td>
+                                            <td class="text-capitalize">{{ $kendaraan->merk_mobil }}</td>
                                             <td>
                                                 <a href="">
                                                     <button class="btn btn-primary">Detail</button>
                                                 </a>
+                                                <form action="{{ url('/admin/manage-mobil/destroy/' . $kendaraan->id_model_mobil) }}" method="POST" class="d-inline">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </form>                                                
                                             </td>
                                         </tr>
-                                        {{-- @endforeach --}}
+                                    @endforeach
                                     </tbody>
                                     </thead>
                                 </table>
@@ -118,18 +128,23 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        {{-- @foreach ($user as $pengguna) --}}
+                                        @foreach ($mobil->where('tipe_mobil', 'minibus') as $kendaraan)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-capitalize"></td>
+                                            <td>{{ $no++ }}</td>
+                                            <td class="text-capitalize">{{ $kendaraan->tipe_mobil }}</td>
+                                            <td class="text-capitalize">{{ $kendaraan->merk_mobil }}</td>
                                             <td>
                                                 <a href="">
                                                     <button class="btn btn-primary">Detail</button>
                                                 </a>
+                                                <form action="{{ url('/admin/manage-mobil/destroy/' . $kendaraan->id_model_mobil) }}" method="POST" class="d-inline">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </form>                                               
                                             </td>
                                         </tr>
-                                        {{-- @endforeach --}}
+                                    @endforeach
                                     </tbody>
                                     </thead>
                                 </table>
@@ -148,18 +163,23 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        {{-- @foreach ($user as $pengguna) --}}
+                                        @foreach ($mobil->where('tipe_mobil', 'truck') as $kendaraan)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td></td>
-                                            <td class="text-capitalize"></td>
+                                            <td class="text-capitalize">{{ $kendaraan->tipe_mobil }}</td>
+                                            <td class="text-capitalize">{{ $kendaraan->merk_mobil }}</td>
                                             <td>
                                                 <a href="">
                                                     <button class="btn btn-primary">Detail</button>
                                                 </a>
+                                                <form action="{{ url('/admin/manage-mobil/destroy/' . $kendaraan->id_model_mobil) }}" method="POST" class="d-inline">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-danger">Hapus</button>
+                                                </form>
                                             </td>
                                         </tr>
-                                        {{-- @endforeach --}}
+                                    @endforeach
                                     </tbody>
                                     </thead>
                                 </table>
@@ -180,19 +200,33 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
+                                        <!-- Form Tambah Mobil -->
                                         <div class="modal-body">
-                                            <!-- Form Tambah Mobil -->
                                             <form method="post" action="{{ route('mobilad.simpan') }}">
                                                 @csrf
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label">Tipe Mobil</label>
-                                                    <input type="text" class="form-control" id="merk_mobil"
-                                                        name="tipe_mobil" required>
+                                                    <label class="form-label">Tipe Mobil</label>
+                                                    <select name="tipe_mobil" class="form-select mb-3" required>
+                                                        <option value="sedan">Sedan</option>
+                                                        <option value="suv">SUV</option>
+                                                        <option value="minibus">Minibus</option>
+                                                        <option value="truck">Truk</option>
+                                                    </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="merk_mobil" class="form-label">Merk Mobil</label>
-                                                    <input type="text" class="form-control" id="merk_mobil"
-                                                        name="merk_mobil" required>
+                                                    <label class="form-label">Merk Mobil</label>
+                                                    <select name="merk_mobil" class="form-select mb-3" required>
+                                                        <option value="toyota">Toyota</option>
+                                                        <option value="daihatsu">Daihatsu</option>
+                                                        <option value="suzuki">Suzuki</option>
+                                                        <option value="mitsubishi">Mitsubishi</option>
+                                                        <option value="nisaan">Nissan</option>
+                                                        <option value="isuzu">Isuzu</option>
+                                                        <option value="bmw">BMW</option>
+                                                        <option value="mersedes-benz">Mersedes-Benz</option>
+                                                        <option value="wuling">Wuling</option>
+                                                        <option value="honda">Honda</option>
+                                                    </select>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Simpan</button>
                                             </form>
