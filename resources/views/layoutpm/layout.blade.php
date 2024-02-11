@@ -50,8 +50,14 @@
                             <a class="nav-link" href="{{route('penggunapm.index')}}">Manajemen User</a>
                         </li>   
                         <li class="nav-item">                   
-                            <a class="nav-link" href="{{route('daftarmobilpm.index')}}">Daftar Mobil</a>
-                        </li>                      
+                            <a class="nav-link" href="{{route('daftarmobilpm.index')}}">Manajemen Mobil</a>
+                        </li>     
+                        <li class="nav-item">                   
+                            <a class="nav-link" href="{{route('daftarmobilpm.index')}}">Manajemen Pembayaran</a>
+                        </li>  
+                        <li class="nav-item">                   
+                            <a class="nav-link" href="{{route('daftarmobilpm.index')}}">Riwayat Transaksiw</a>
+                        </li>                   
                     </ul>
                     {{-- START LOGOUT --}}
                     @if(Auth::check())

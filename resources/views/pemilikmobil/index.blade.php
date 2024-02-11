@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="button col-md-1-5 col-lg-10 mx-0 p-1">
                                         {{-- <button type="button" class="btn btn-outline-dark btn-sm btn-block">Pilih Foto</button> --}}
-                                        <input type="file" name="profilePicture" id="">
+                                        <input type="file" name="profilePicture" class="" accept="image/jpeg, .jpeg, .jpg, image/png, .png">
                                     </div>
                                 </div>
                             <div class="2 col-sm-auto">
@@ -91,7 +91,13 @@
                                                     <input type="text" class="form-control" id="exampleInputPassword1"
                                                         placeholder="number" onkeypress="return /[0-9]/i.test(event.key)">
                                                 </div>
-
+                                                
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Foto Ktp</label>
+                                                    <div>
+                                                    <input type="file" name="profilePicture" class="" accept="image/jpeg, .jpeg, .jpg, image/png, .png">
+                                                    </div>
+                                                </div>
                                             </form>
                                         </tbody>
                                     </table>
@@ -100,7 +106,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href=""><button class="btn btn-success">Tambah</button></a>
+                        <a href=""><button class="btn btn-success">Simpan</button></a>
                     </div>
                 </div>
             </div>
