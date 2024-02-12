@@ -1,13 +1,15 @@
 @extends('layoutad.layout')
-@section('title', 'Dashboard')
+@section('title', 'Edit User')
 @section('content')
 
     <style>
         .container {
-            margin: 100px;
+            margin-top: 100px;
         }
     </style>
 
     <div class="container">
         <div class="row">
+
         </div>
+    </div>
