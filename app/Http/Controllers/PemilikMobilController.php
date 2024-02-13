@@ -16,12 +16,12 @@ class PemilikMobilController extends Controller
                 ->orWhere('alamat_pemilik', 'like', '%' . $search . '%')
                 ->orWhere('nomor_telepon_pemilik', 'like', '%' . $search . '%');
         })->get();
-        return view('pemilikmobil.index', compact('pemilik'));
+        return view('pemilik-mobil.pemilikmobil.index', compact('pemilik'));
     }
 
     public function tambah()
     {
-        return view('pemilikmobil.tambah');
+        return view('penggunapm.tambah');
     }
 
     public function simpan(Request $request)
@@ -32,7 +32,7 @@ class PemilikMobilController extends Controller
             'nomor_telepon_pemilik' => ['required'],
             'foto_ktp_pemilik' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
-        
+
 
         // Simpan foto KTP pemilik ke direktori yang sesuai dalam storage
         if ($request->file('foto_ktp_pemilik')) {
@@ -41,22 +41,22 @@ class PemilikMobilController extends Controller
             $file->storeAs('public/file', $fileName);
 
             // Simpan data pemilik mobil ke dalam tabel pemilik_mobil menggunakan metode create
-        PemilikMobil::create([
-            'nama_pemilik' => $request->nama_pemilik,
-            'alamat_pemilik' => $request->alamat_pemilik,
-            'nomor_telepon_pemilik' => $request->nomor_telepon_pemilik,
-            'foto_ktp_pemilik' => 'storage/file/' . $fileName,
-        ]);
-            return redirect()->route('pemilikmobil.index')->with('success', 'pemilik berhasil ditambah');
+            PemilikMobil::create([
+                'nama_pemilik' => $request->nama_pemilik,
+                'alamat_pemilik' => $request->alamat_pemilik,
+                'nomor_telepon_pemilik' => $request->nomor_telepon_pemilik,
+                'foto_ktp_pemilik' => 'storage/file/' . $fileName,
+            ]);
+            return redirect()->route('penggunapm.index')->with('success', 'pemilik berhasil ditambah');
         } else {
-            return redirect()->route('pemilikmobil.index')->with('error', 'pemilik gagal ditambah');
+            return redirect()->route('penggunapm.index')->with('error', 'pemilik gagal ditambah');
         }
     }
 
     public function edit($id)
     {
         $pemilik = PemilikMobil::find($id);
-        return view('pemilikmobil.edit', compact('pemilik'));
+        return view('penggunapm.edit', compact('pemilik'));
     }
 
     public function update(Request $request, $id)
@@ -86,7 +86,7 @@ class PemilikMobilController extends Controller
         // Update data pemilik
         $pemilik->update($data);
 
-        return redirect()->route('pemilikmobil.index')->with('success', 'Data pemilik berhasil diperbarui');
+        return redirect()->route('penggunapm.index')->with('success', 'Data pemilik berhasil diperbarui');
     }
 
 }
