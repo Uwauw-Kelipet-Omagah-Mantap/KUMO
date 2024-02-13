@@ -8,6 +8,6 @@ class ManajemenUlasanAD extends Controller
 {
     public function index()
     {
-        return view('ulasanad.index');
+        return view('admin.ulasanad.index');
     }
 }

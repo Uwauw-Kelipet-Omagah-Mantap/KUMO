@@ -8,6 +8,6 @@ class ManajemenPembayaranADController extends Controller
 {
     public function index()
     {
-        return view("manajemenpembayaranad.index");
+        return view("admin.manajemenpembayaranad.index");
     }
 }

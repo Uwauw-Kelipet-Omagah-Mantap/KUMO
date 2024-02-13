@@ -8,6 +8,6 @@ class TransaksiPembayaranAD extends Controller
 {
     public function index()
     {
-        return view("transaksipembayaranad.index");
+        return view("admin.transaksipembayaranad.index");
     }
 }
