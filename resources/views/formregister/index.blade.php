@@ -23,11 +23,6 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="Masukkan Email" value="{{ old('email') }}" required>
-                            </div>
-                            <div class="form-group">
                                 <label for="username">Username:</label>
                                 <input type="text" class="form-control" id="username" name="username"
                                     placeholder="Masukkan Username" value="{{ old('username') }}" required>

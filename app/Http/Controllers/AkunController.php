@@ -23,7 +23,7 @@ class AkunController extends Controller
             $query->where('username', 'like', '%' . $search . '%')
                 ->orWhere('role', 'like', '%' . $search . '%');
         })->get();
-        return view('pengguna.index', compact('user'));
+        return view('admin.pengguna.index', compact('user'));
     }
 
     public function tambah()
@@ -51,30 +51,32 @@ class AkunController extends Controller
     public function edit($id)
     {
         $user = Akun::find($id);
-        if (!$user) {
-            return redirect()->route('pengguna.index')->with('eror', 'Pengguna tidak ditemukan');
-        }
-        return view('pengguna.edit', compact('user'));
+
+
+        return view('pengguna.index', [
+
+            'Akun' => $user
+
+        ]);
     }
 
     public function update(Request $request, $id)
-    {  
+    {
         $data = $request->validate([
-            'username' => ['required'],
-            'role' => ['required']
+            'username' => ['required']
         ]);
-        $user = Akun::query()->find($id);
-        $user -> fill($data);
-        $user -> save();
+        $user = Akun::findOrFail($id);
+        $user->fill($data);
+        $user->save();
         return redirect('admin/manage-user')->with('success', 'User berhasil di update');
     }
 
     public function destroy($id)
     {
-       $user = Akun::find($id);
-       if ($user) {
+        $user = Akun::find($id);
+        if ($user) {
             $user->delete();
-       }
-       return redirect()->route('pengguna.index')->with('success', 'User berhasil di dihapus');
+        }
+        return redirect()->route('pengguna.index')->with('success', 'User berhasil di dihapus');
     }
 }

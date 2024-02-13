@@ -8,6 +8,6 @@ class DashboardPLController extends Controller
 {
     public function index()
     {
-       return view('dashboardpl.index');
+        return view('pelanggan.dashboardpl.index');
     }
 }
