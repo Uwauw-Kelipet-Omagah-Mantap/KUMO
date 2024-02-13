@@ -14,13 +14,12 @@ class AuthController extends Controller
     {
         return view('formlogin.index');
     }
-
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            if (Auth::user()->role === 'admin') {
+            if (Auth::user()->role === 'admin'){
                 return redirect()->intended('/admin/dashboard');
             } else if (Auth::user()->role === 'pelanggan') {
                 return redirect()->intended('/pelanggan/dashboard');
@@ -29,8 +28,6 @@ class AuthController extends Controller
             }
             alert::success('Login Berhasil', 'Selamat Datang.');
         }
-
-        return redirect()->route('formlogin.index')->with('error', 'Login gagal. Periksa kembali username dan password Anda.');
     }
 
     public function showRegisterForm()
