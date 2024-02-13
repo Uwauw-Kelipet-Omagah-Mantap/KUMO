@@ -10,7 +10,7 @@ class DaftarMobilPMController extends Controller
     public function index()
     {
         $mobil = Mobil::all();
-        return view("daftarmobilpm.index", compact('mobil'));
+        return view("pemilik-mobil.daftarmobilpm.index", compact('mobil'));
     }
 
     public function tambah()
@@ -27,7 +27,7 @@ class DaftarMobilPMController extends Controller
             'foto_mobil' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'harga_mobil' => 'required|numeric', // tambahkan validasi untuk tipe data harga
         ]);
-        
+
         // Simpan foto mobil ke direktori yang sesuai dalam storage
         if ($request->file('foto_mobil')) {
             $file = $request->file('foto_mobil');
@@ -37,7 +37,7 @@ class DaftarMobilPMController extends Controller
             // Simpan data mobil ke dalam tabel mobil menggunakan metode create
             $mobil = new Mobil($data);
             $mobil->save();
-            
+
 
             return redirect()->route('daftarmobilpm.index')->with('success', 'Mobil berhasil ditambah');
         } else {

@@ -8,6 +8,6 @@ class DashboardPMController extends Controller
 {
     public function index()
     {
-        return view("dashboardpm.index");
+        return view("pemilik-mobil.dashboardpm.index");
     }
 }

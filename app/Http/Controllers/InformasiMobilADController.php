@@ -8,6 +8,6 @@ class InformasiMobilADController extends Controller
 {
     public function index()
     {
-        return view("informasimobilad.index");
+        return view("admin.informasimobilad.index");
     }
 }
