@@ -34,17 +34,22 @@
                     <div class="card-body">
                         <div class="container" style="margin-top: 0px;">
                             <div class="row">
-                                {{-- --}}
-                                <div class="1 col-md-1-5 col-lg-3 mx-0 shadow p-3 bg-white rounded">
-                                    <div class="image col-lg-10">
-                                        <img src="{{ asset('brocklesnar.jpg') }}"
-                                            style="max-width: 198.825px; max-height: auto; margin:0%;" alt=""
-                                            class="mx-auto">
-                                    </div>
-                                    <div class="button col-md-1-5 col-lg-10 mx-0 p-1">
-                                        {{-- <button type="button" class="btn btn-outline-dark btn-sm btn-block">Pilih Foto</button> --}}
-                                        <input type="file" name="profilePicture" class=""
-                                            accept="image/jpeg, .jpeg, .jpg, image/png, .png">
+                                <div class="col-auto">
+                                    <div class="mx-0 shadow p-3 bg-white rounded">
+                                        <div class="image">
+                                            <img src="{{ asset('brocklesnar.jpg') }}"
+                                                style="max-width: 25vw; max-height: auto; margin:0%;" alt=""
+                                                class="mx-auto">
+                                        </div>
+                                        <div class="button mx-0 p-1">
+                                            {{-- <button type="button" class="btn btn-outline-dark btn-sm btn-block">Pilih Foto</button> --}}
+                                            <input type="file" name="profilePicture" class=""
+                                                accept="image/jpeg, .jpeg, .jpg, image/png, .png"
+                                                style="
+                                                padding-top: 10px;
+                                                margin-left: -5;
+                                            ">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="2 col-sm-auto">
@@ -82,18 +87,27 @@
                                                     {{-- <small id="emailHelp" class="form-text text-muted">We'll never share
                                                         your email with anyone else.</small> --}}
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group"
+                                                    style="
+                                                padding-top: 10px;
+                                            ">
                                                     <label for="exampleInputPassword1">Password</label>
                                                     <input type="password" class="form-control" id="exampleInputPassword1"
                                                         placeholder="Password">
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group"
+                                                    style="
+                                                padding-top: 10px;
+                                            ">
                                                     <label for="exampleInputNumber1">Nomor Telepon</label>
                                                     <input type="text" class="form-control" id="exampleInputNumber1"
                                                         placeholder="number" onkeypress="return /[0-9]/i.test(event.key)">
                                                 </div>
 
-                                                <div class="form-group">
+                                                <div class="form-group"
+                                                    style="
+                                                padding-top: 10px;
+                                            ">
                                                     <label for="exampleInputPhoto1">Foto Ktp</label>
                                                     <div>
                                                         <input type="file" name="profilePicture" class=""
