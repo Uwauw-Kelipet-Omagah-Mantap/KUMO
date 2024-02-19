@@ -14,6 +14,7 @@ use App\Http\Controllers\ManajemenPembayaranADController;
 use App\Http\Controllers\ManajemenPembayaranPMController;
 use App\Http\Controllers\ManajemenUlasanAD;
 use App\Http\Controllers\ManajemenUlasanPM;
+use App\Http\Controllers\PagePembayaranController;
 use App\Http\Controllers\PemilikMobilController;
 use App\Http\Controllers\LandingPageController;
 
@@ -110,10 +111,14 @@ Route::prefix('/pelanggan')->middleware(['auth', 'checkrole:pelanggan'])->group(
 //     Route::post('/pemilikmobil/edit/{id}', [PemilikMobilController::class, 'update'])->name('pemilikmobil.update');
 // });
 
-Route::prefix('landingpage')->group(function () {
+Route::prefix('')->group(function () {
     Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 });
 
 Route::prefix('List-Mobil')->group(function () {
     Route::get('/', [ListMobilController::class, 'index'])->name('list-mobil.index');
+});
+
+Route::prefix('Page-Pembayaran')->group(function () {
+    Route::get('/', [PagePembayaranController::class, 'index'])->name('page-pembayaran.index');
 });

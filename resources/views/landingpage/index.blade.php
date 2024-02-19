@@ -6,6 +6,9 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <style>
+        body {
+            overflow-x: hidden;
+        }
         .container {
             display: flex;
             margin-top: 200px;

@@ -35,22 +35,117 @@
             </div>
         </div>
     </nav>
-    <main class="kotak">
-        <div class="container row" style="padding-top:100px ">
-            <div class="col-auto ">
-                <div class="mx-0 shadow p-3 bg-white rounded">
-                    <div class="filter">
-                        Filter Pencarian
-                    </div>
-                    <div class="isi-filter col-sm-auto">
-                        <div class="tittle">Jenis Kendaraan</div>
-                        <div class="tittle">Tipe Tersedia</div>
+    <main class="kotak" style="padding-top: 100px">
+        <div class="row justify-content-center">
+            @foreach ($user as $pengguna)
+            <div class="col-auto mb-3">
+                <div class="card" style="width: 23rem">
+                <div class="card-body">
+                    <img src="{{ asset('mobil.png') }}" alt="W3Schools.com" style="width: 10rem;margin-bottom:10rm">
+                    <h5 class="card-title">{{$pengguna -> username}}</h5>
+                    <p class="card-text">{{$pengguna -> role}}</p>
+                    <div class="button text-end">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#sewaMobilModal{{ $loop->iteration }}">Sewa</button>
                     </div>
                 </div>
+              </div>
             </div>
-            <div class="col-2 ">
-                <h1>100px</h1>
-            </div>
-        </div>
+            <div class="modal fade" id="sewaMobilModal{{ $loop->iteration }}" tabindex="-1"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sewaMobilModalLabel">Pilih Tanggal Penyewaan</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form Penyewaan Mobil -->
+                                    <form method="post" action="{{ route('pengguna.simpan') }}">
+                                        @csrf
+                                        <form method="POST">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Peminjaman</span>
+                                                <input type="date" name="peminjaman" class="form-control mb-3" id="peminjaman">
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Pengembalian</span>
+                                                <input type="date" name="pengembalian" class="form-control mb-3" id="pengembalian">
+                                            </div>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="">
+                                                <label for="" class="form-label ">Harga</label>
+                                                <br>
+                                                <label for="" class="form-label">Rp.0</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                        <button type="button" class="btn btn-primary" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#lanjutMobilModal{{ $loop->iteration }}" id="lanjut">Lanjut</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="lanjutMobilModal{{ $loop->iteration }}" tabindex="-1" aria-labelledby="tambahAkunModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="lanjutMobilModalLabel">Pesanan</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form Penyewaan Mobil -->
+                                    <form method="post" action="{{ route('pengguna.simpan') }}">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Nama Mobil</label>
+                                            <br>
+                                            <span>{{$pengguna-> username}}</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Tarif Mobil</label>
+                                            <br>
+                                            <span>{{$pengguna-> role}}</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div id="peminjamanT">Peminjaman: <span></span></div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Pengembalian</label>
+                                            <br>
+                                            <span>{{$pengguna-> role}}</span>
+                                        </div>
+                                        <a href="{{ route('page-pembayaran.index') }}" type="submit" class="btn btn-primary">Pesan</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            @endforeach
+          </div>
+          <script type="text/javascript">
+            $(document).ready(function() {
+                $('#lanjut').click(function() {
+                    var peminjaman = $('#peminjaman').val();
+                    var pengembalian = $('#pengembalian').val();
+    
+                    if (peminjaman !== "") {
+                        $('#peminjamanT').text(peminjaman);
+                    }
+                    if (pengembalian !== "") {
+                        $('#pengembalianT span').text(pengembalian);
+                    }
+                });
+            });
+        </script>
     </main>
 </body>
