@@ -20,11 +20,11 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             if (Auth::user()->role === 'admin'){
-                return redirect()->intended('/admin/dashboard');
+                return redirect()->intended('/admin/manage-user');
             } else if (Auth::user()->role === 'pelanggan') {
                 return redirect()->intended('/pelanggan/dashboard');
             } else if (Auth::user()->role === 'pemilik_mobil') {
-                return redirect()->intended('/pemilik-mobil/dashboard');
+                return redirect()->intended('/pemilik-mobil/manage-user');
             }
             alert::success('Login Berhasil', 'Selamat Datang.');
         }

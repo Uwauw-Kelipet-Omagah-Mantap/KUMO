@@ -27,7 +27,7 @@ class DaftarMobilADController extends Controller
     {
         // Validasi input
         $request->validate([
-            //'id_model_mobil' => 'required|string',
+            // 'id_model_mobil' => 'required|string',
             'tipe_mobil' => 'required|string',
             'merk_mobil' => 'required|string',
         ]);

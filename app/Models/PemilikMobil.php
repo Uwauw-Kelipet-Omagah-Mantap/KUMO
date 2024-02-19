@@ -21,6 +21,6 @@ class PemilikMobil extends Model
     //RELATION AKUN
     public function akun()
     {
-        return $this->hasOne(Akun::class,'id_akun', 'id_akun');
+        return $this->hasOne(Akun::class, 'username', 'username');
     }
 }
