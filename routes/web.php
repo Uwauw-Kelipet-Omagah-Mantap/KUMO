@@ -80,6 +80,8 @@ Route::prefix('/admin')->middleware(['auth', 'checkrole:admin'])->group(function
     //Rute manage mobil admin
     Route::get('/manage-mobil', [DaftarMobilADController::class, 'index'])->name('mobilad.index');
     Route::post('/manage-mobil/simpan', [DaftarMobilADController::class, 'simpan'])->name('mobilad.simpan');
+    Route::delete('/manage-mobil/destroy{id}', [DaftarMobilADController::class, 'destroy'])->name('mobilad.destroy');
+
     //Rute informasi mobil admin
     Route::get('/manage-informasi-mobil', [InformasiMobilADController::class, 'index'])->name('informasimobilad.index');
     //Rute pembayaran mobil admin

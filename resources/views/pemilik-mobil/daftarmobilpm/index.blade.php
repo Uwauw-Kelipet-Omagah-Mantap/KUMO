@@ -20,6 +20,8 @@
                             <thead>
                                 <tr>
                                     <th>NO</th>
+                                    {{-- <th>ID MOBIL</th> --}}
+                                    <th>NAMA PEMILIK</th>
                                     <th>NAMA MOBIL</th>
                                     <th>TIPE MOBIL</th>
                                     <th>MERK MOBIL</th>
@@ -34,8 +36,11 @@
                                 @foreach ($mobil as $m)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td></td>
-                                        <td></td>
+                                        {{-- <td>{{ $m->id_mobil }}</td> --}}
+                                        <td>{{ $m->pemilik_mobil->nama_pemilik }}</td>
+                                        <td>{{ $m->nama_mobil }}</td>
+                                        <td>{{ $m->tipe_mobil }}</td>
+                                        <td>{{ $m->merk_mobil }}</td>
                                         <td>
                                             <img src="{{ asset($m->foto_mobil) }}" alt="fotomobil">
                                         </td>
@@ -57,7 +62,8 @@
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-success" data-bs-toggle="modal"
-                            data-bs-target="#tambahMobilModal">Tambah</button>
+                            data-bs-target="#tambahMobilModal">Tambah
+                        </button>
                     </div>
                     <!-- Modal Tambah Mobil -->
                     <div class="modal fade" id="tambahMobilModal" tabindex="-1" aria-labelledby="tambahMobilModalLabel"
@@ -71,82 +77,66 @@
                                 </div>
                                 <!-- Form Tambah Mobil -->
                                 <div class="modal-body">
-                                    <div class="container" style="margin-top: 0px;">
-                                        <div class="row">
-                                            {{-- --}}
-                                            <div class="1 col-md-1-5 col-lg-3 mx-0 shadow p-3 bg-white rounded"
-                                                style="width: 232px">
-                                                <div class="image col-lg-10">
-                                                    <img src="{{ asset('brocklesnar.jpg') }}"
-                                                        style="max-width: 198.825px; max-height: auto; margin:0%;"
-                                                        alt="" class="mx-auto">
+                                    <div class="container">
+                                        <form method="POST" action="{{ route('pemilik-mobil.daftarmobilpm.simpan') }}" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @foreach ($pemilik_mobil as $p)
+                                                            <input type="hidden" name="id_pemilik_mobil" value="{{ $p->id_pemilik_mobil }}">
+                                                        @endforeach   
+                                                    </div>
+                                                    <!-- Tambahkan input hidden untuk id_pemilik_mobil -->
+                                                    {{-- <input type="hidden" name="nama_pemilik" value="{{ Auth::user()->nama_pemilik }}"> --}}
+                                                    <div class="form-group">
+                                                        <label for="nama_mobil">Nama Mobil</label>
+                                                        <input type="text" class="form-control" id="nama_mobil" name="nama_mobil" placeholder="Masukkan Nama Mobil">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="form-label">Tipe Mobil</label>
+                                                        <select name="tipe_mobil" class="form-select mb-3" required>
+                                                            @foreach ($model_mobil as $m)
+                                                                <option value="{{ $m->tipe_mobil }}">{{ $m->tipe_mobil }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="form-label">Merk Mobil</label>
+                                                        <select name="merk_mobil" class="form-select mb-3" required>
+                                                            @foreach ($model_mobil as $m)
+                                                                <option value="{{ $m->id_model_mobil }}">{{ $m->merk_mobil }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                                <div class="button col-md-1-5 col-lg-10 mx-0 p-1">
-                                                    {{-- <button type="button" class="btn btn-outline-dark btn-sm btn-block">Pilih Foto</button> --}}
-                                                    <input type="file" name="profilePicture" class=""
-                                                        accept="image/jpeg, .jpeg, .jpg, image/png, .png">
+                                                <div class="col-md-6">
+                                                    <!-- Pratinjau gambar -->
+                                                    <div class="form-group">
+                                                        <label for="foto_mobil">Foto Mobil</label>
+                                                        <input type="file" name="foto_mobil" id="fileUpload" onchange="previewImage()" class="file-input" accept="image/jpeg, .jpeg, .jpg, image/png, .png">
+                                                        <img id="imagePreview" src="#" alt="Preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px;">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="harga_mobil">Harga Mobil</label>
+                                                        <div class="input-group mb-3">
+                                                            <span class="input-group-text">Rp</span>
+                                                            <input name="harga_mobil" type="text" class="form-control" onkeypress="return /[0-9]/i.test(event.key)" placeholder="Masukkan Harga" aria-label="Amount (to the nearest dollar)">
+                                                            <span class="input-group-text">.00</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="2 col-sm-auto">
-                                                <table class="table table-hovered table-bordered">
-                                                    <tbody>
-                                                        @php
-                                                            $no = 1;
-                                                        @endphp
-                                                        <form>
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Nama Mobil</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                                    placeholder="Nama Mobil">
-                                                                {{-- <small id="emailHelp" class="form-text text-muted">We'll never share
-                                                                    your email with anyone else.</small> --}}
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="form-label">Tipe Mobil</label>
-                                                                <select name="tipe_mobil" class="form-select mb-3" required>
-                                                                    <option value="sedan">Sedan</option>
-                                                                    <option value="suv">SUV</option>
-                                                                    <option value="minibus">Minibus</option>
-                                                                    <option value="truck">Truk</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="form-label">Merk Mobil</label>
-                                                                <select name="merk_mobil" class="form-select mb-3" required>
-                                                                    <option value="toyota">Toyota</option>
-                                                                    <option value="daihatsu">Daihatsu</option>
-                                                                    <option value="suzuki">Suzuki</option>
-                                                                    <option value="mitsubishi">Mitsubishi</option>
-                                                                    <option value="nisaan">Nissan</option>
-                                                                    <option value="isuzu">Isuzu</option>
-                                                                    <option value="bmw">BMW</option>
-                                                                    <option value="mersedes-benz">Mersedes-Benz</option>
-                                                                    <option value="wuling">Wuling</option>
-                                                                    <option value="honda">Honda</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="input-group mb-3">
-                                                                <span class="input-group-text">Rp</span>
-                                                                <input type="text" class="form-control"
-                                                                    onkeypress="return /[0-9]/i.test(event.key)"
-                                                                    placeholder="Tarif
-                                                                    aria-label="Amount
-                                                                    (to the nearest dollar)">
-                                                                <span class="input-group-text">.00</span>
-                                                            </div>
-                                                        </form>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                            <button type="submit" class="btn btn-success">Simpan</button>
+                                        </form>
                                     </div>
-                                </div>
+                                </div>                              
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    

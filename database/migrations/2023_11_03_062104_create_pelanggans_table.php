@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('pelanggan', function (Blueprint $table) {
             $table->string('id_pelanggan')->primary();
+            $table->string('username')->nullable(false);
             $table->string('nama_pelanggan',50)->nullable(false);
             $table->text('alamat_pelanggan')->nullable(false);
             $table->unsignedBigInteger('nomor_telepon_pelanggan')->nullable(false);          
             $table->string('foto_sim',50)->nullable(false);
             $table->string('foto_ktp_pelanggan',50)->nullable(false);
             $table->timestamps();
+            //FK AKUN
+            $table->foreign('username')->references('username')->on('akun')
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

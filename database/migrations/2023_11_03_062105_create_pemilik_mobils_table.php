@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('pemilik_mobil', function (Blueprint $table) {
             $table->unsignedBigInteger('id_pemilik_mobil', true);
+            $table->string('username')->nullable(false);
             $table->string('nama_pemilik', 50)->nullable(false);
             $table->text('alamat_pemilik')->nullable(false);
             $table->string('nomor_telepon_pemilik', 15)->nullable(false);
             $table->string('foto_ktp_pemilik', 50)->nullable(false);
             $table->timestamps();
+            //FK AKUN
+            $table->foreign('username')->references('username')->on('akun')
+                    ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

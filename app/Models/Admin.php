@@ -22,6 +22,6 @@ class Admin extends Model
     //RELATION AKUN
     public function akun()
     {
-        return $this->hasOne(Akun::class, 'id_admin', 'id_admin');
+        return $this->hasOne(Akun::class, 'username', 'username');
     }
 }
