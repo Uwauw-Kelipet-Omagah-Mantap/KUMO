@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('pelanggan.layoutpl2.layout')
 @section('title', 'Halaman Dashboard')
 <html>
 
@@ -77,7 +77,7 @@
                     pengalaman menyenangkan untuk pelanggan</p>
             </div>
             <div class="img">
-                <img src="mobil.png" alt="mobil" style="width: 500px;margin-left: -5px;">
+                <img src="{{ asset('mobil.png') }}" alt="mobil" style="width: 500px;margin-left: -5px;">
             </div>
         </div>
     </div>
