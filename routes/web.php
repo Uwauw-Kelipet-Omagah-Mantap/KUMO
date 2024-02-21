@@ -9,7 +9,9 @@ use App\Http\Controllers\DashboardPLController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InformasiMobilADController;
 use App\Http\Controllers\InformasiPembayaranAD;
+use App\Http\Controllers\LandingPageControllerPL;
 use App\Http\Controllers\ListMobilController;
+use App\Http\Controllers\ListMobilControllerPL;
 use App\Http\Controllers\ManajemenPembayaranADController;
 use App\Http\Controllers\ManajemenPembayaranPMController;
 use App\Http\Controllers\ManajemenUlasanAD;
@@ -60,7 +62,7 @@ Route::prefix('/pemilik-mobil')->middleware(['auth', 'checkrole:pemilik_mobil'])
     Route::get('/manage-user/edit/{id}', [PemilikMobilController::class, 'edit'])->name('penggunapm.edit');
     Route::post('/manage-user/edit/{id}', [PemilikMobilController::class, 'update'])->name('penggunapm.update');
     Route::delete('/manage-user/destroy/{id}', [PemilikMobilController::class, 'destroy'])->name('penggunapm.destroy');
-    //Rute Manage pembayran pemilik mobil
+    //Rute Manage pembayaran pemilik mobil
     Route::get('/manage-pembayaran', [ManajemenPembayaranPMController::class, 'index'])->name('pemilik-mobil.manajemenpembayaranpm.index');
 
     //Rute Manage ulasan pemilik mobil
@@ -92,24 +94,13 @@ Route::prefix('/admin')->middleware(['auth', 'checkrole:admin'])->group(function
 });
 
 Route::prefix('/pelanggan')->middleware(['auth', 'checkrole:pelanggan'])->group(function () {
-    // Rute yang hanya dapat diakses oleh pemilik mobil
+    // Rute Web Page
+    Route::get('/', [LandingPageControllerPL::class, 'index'])->name('pelanggan.landingpage.index');
+    Route::get('/list-mobil', [ListMobilControllerPL::class, 'index'])->name('pelanggan.list-mobil.index');
+    Route::get('/Page-Pembayaran', [PagePembayaranController::class, 'index'])->name('pelanggan.page-pembayaran.index');
+    // Rute yang hanya dapat diakses oleh Pelanggan
     Route::get('/dashboard', [DashboardPLController::class, 'index'])->name('pelanggan.dashboardpl.index');
 });
-
-
-// Route::prefix('dashboard')
-//         ->group(function () {
-//     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
-//     Route::get('/daftarmobil', [DaftarMobilController::class, 'index'])->name('daftarmobil.index');
-//     Route::get('/daftarmobil/tambah', [DaftarMobilController::class, 'tambah'])->name('daftarmobil.tambah');
-//     Route::post('/daftarmobil/simpan', [DaftarMobilController::class, 'simpan'])->name('daftarmobil.simpan');
-
-//     Route::get('/pemilikmobil', [PemilikMobilController::class, 'index'])->name('pemilikmobil.index');
-//     Route::get('/pemilikmobil/tambah', [PemilikMobilController::class, 'tambah'])->name('pemilikmobil.tambah');
-//     Route::post('/pemilikmobil/simpan', [PemilikMobilController::class, 'simpan'])->name('pemilikmobil.simpan');
-//     Route::get('/pemilikmobil/edit/{id}', [PemilikMobilController::class, 'edit'])->name('pemilikmobil.edit');
-//     Route::post('/pemilikmobil/edit/{id}', [PemilikMobilController::class, 'update'])->name('pemilikmobil.update');
-// });
 
 Route::prefix('')->group(function () {
     Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
@@ -117,8 +108,4 @@ Route::prefix('')->group(function () {
 
 Route::prefix('List-Mobil')->group(function () {
     Route::get('/', [ListMobilController::class, 'index'])->name('list-mobil.index');
-});
-
-Route::prefix('Page-Pembayaran')->group(function () {
-    Route::get('/', [PagePembayaranController::class, 'index'])->name('page-pembayaran.index');
 });

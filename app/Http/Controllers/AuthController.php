@@ -23,7 +23,7 @@ class AuthController extends Controller
             if (Auth::user()->role === 'admin') {
                 return redirect()->intended('/admin/dashboard');
             } else if (Auth::user()->role === 'pelanggan') {
-                return redirect()->intended('/pelanggan/dashboard');
+                return redirect()->intended('/pelanggan/list-mobil');
             } else if (Auth::user()->role === 'pemilik_mobil') {
                 return redirect()->intended('/pemilik-mobil/dashboard');
             }
@@ -60,7 +60,7 @@ class AuthController extends Controller
             if (Auth::user()->role === 'admin') {
                 return redirect()->intended('/admin/dashboard');
             } else if (Auth::user()->role === 'pelanggan') {
-                return redirect()->intended('/pelanggan/dashboard');
+                return redirect()->intended('/pelanggan/list-mobil');
             } else if (Auth::user()->role === 'pemilik_mobil') {
                 return redirect()->intended('/pemilik-mobil/dashboard');
             }

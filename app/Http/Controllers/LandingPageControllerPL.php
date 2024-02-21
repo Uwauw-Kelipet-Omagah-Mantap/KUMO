@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PagePembayaranController extends Controller
+class LandingPageControllerPL extends Controller
 {
     public function index()
     {
-        return view("pelanggan.page-pembayaran.index");
+        return view("pelanggan.landingpage.index");
     }
 }
