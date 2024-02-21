@@ -36,7 +36,7 @@
                                 </tr>
                             <tbody>
                                 @php
-                                    $no = 1;
+                                    $no = 1; 
                                 @endphp
                                 {{-- @foreach ($user as $pengguna) --}}
                                 <tr>
@@ -48,7 +48,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td <a href="">
+                                    <td> <a href="">
                                         <button class="btn btn-primary">Edit</button>
                                         </a>
                                         <form action="" method="POST" class="d-inline">

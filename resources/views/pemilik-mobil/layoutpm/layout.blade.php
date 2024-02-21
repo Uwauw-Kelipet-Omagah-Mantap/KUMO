@@ -47,6 +47,7 @@
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
@@ -104,6 +105,7 @@ border: 1px solid rgba(0, 0, 0, 0.1);
             </div>
         </div>
     </nav>
+    
     <div class="container">
         @yield('content')
     </div>

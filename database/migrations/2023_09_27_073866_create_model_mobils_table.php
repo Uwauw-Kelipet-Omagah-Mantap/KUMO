@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('merk_mobil', [
                                         'toyota', 'daihatsu', 'suzuki', 
                                         'mitsubishi', 'nissan', 'isuzu', 
-                                        'bmw', 'mersedes-benz', 'wuling', 
+                                        'bmw', 'mercedes-benz', 'wuling', 
                                         'honda'
                                     ]);
             $table->timestamps();

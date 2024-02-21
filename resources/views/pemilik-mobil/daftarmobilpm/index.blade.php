@@ -37,10 +37,10 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         {{-- <td>{{ $m->id_mobil }}</td> --}}
-                                        <td>{{ $m->pemilik_mobil->nama_pemilik }}</td>
+                                        <td>{{ $m->pemilik->nama_pemilik }}</td>
                                         <td>{{ $m->nama_mobil }}</td>
-                                        <td>{{ $m->tipe_mobil }}</td>
-                                        <td>{{ $m->merk_mobil }}</td>
+                                        <td>{{ $m->model->tipe_mobil }}</td>
+                                        <td>{{ $m->model->merk_mobil }}</td>
                                         <td>
                                             <img src="{{ asset($m->foto_mobil) }}" alt="fotomobil">
                                         </td>
@@ -90,6 +90,14 @@
                                                     <!-- Tambahkan input hidden untuk id_pemilik_mobil -->
                                                     {{-- <input type="hidden" name="nama_pemilik" value="{{ Auth::user()->nama_pemilik }}"> --}}
                                                     <div class="form-group">
+                                                        <label class="form-label">Nama Pemilik</label>
+                                                        <select name="id_pemilik_mobil" class="form-select mb-3">
+                                                            @foreach ($pemilik_mobil as $pm)
+                                                                <option value="{{ $pm->id_pemilik_mobil }}">{{ $pm->nama_pemilik }}</option>
+                                                            @endforeach
+                                                        </select>                                                        
+                                                    </div>
+                                                    <div class="form-group">                
                                                         <label for="nama_mobil">Nama Mobil</label>
                                                         <input type="text" class="form-control" id="nama_mobil" name="nama_mobil" placeholder="Masukkan Nama Mobil">
                                                     </div>
@@ -117,6 +125,26 @@
                                                         <input type="file" name="foto_mobil" id="fileUpload" onchange="previewImage()" class="file-input" accept="image/jpeg, .jpeg, .jpg, image/png, .png">
                                                         <img id="imagePreview" src="#" alt="Preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px;">
                                                     </div>
+                                                    <script>
+                                                        function previewImage() {
+                                                            var input = document.getElementById("fileUpload");
+                                                            var preview = document.getElementById("imagePreview");
+
+                                                            if (input.files && input.files[0]) {
+                                                                var reader = new FileReader();
+
+                                                                reader.onload = function(e) {
+                                                                    preview.src = e.target.result;
+                                                                    preview.style.display = 'block';
+                                                                }
+
+                                                                reader.readAsDataURL(input.files[0]);
+                                                            } else {
+                                                                preview.src = "#";
+                                                                preview.style.display = "none";
+                                                            }
+                                                        }
+                                                    </script>
                                                     <div class="form-group">
                                                         <label for="harga_mobil">Harga Mobil</label>
                                                         <div class="input-group mb-3">

@@ -1,29 +1,11 @@
 @extends('pemilik-mobil.layoutpm.layout')
-@section('title', 'Daftar Mobil')
+@section('title', 'Tabel Pemilik Mobil')
 @section('content')
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyJq41R9u11qZ/Cq0FF2m6N5BIb/D5Q5c3" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous">
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"
-    integrity="sha384-FG7aR1z7U4Z6BYl719/RA7L+TC9a0Cd8PcAe0qsnzO+zdA9Kxq8GWRNEo96gZL1B"
-    crossorigin="anonymous">
-</script>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyJq41R9u11qZ/Cq0FF2m6N5BIb/D5Q5c3"
-    crossorigin="anonymous">
-</script>
-
 
 <style>
     .container {
-        margin-top: 100px;
+        margin: 100px;
+        margin-left: 25px;
     }
 </style>
 
@@ -62,10 +44,8 @@
                                     <td>{{ $pm->username }}</td>
                                     <td>{{ $pm->nama_pemilik }}</td>
                                     <td>{{ $pm->alamat_pemilik }}</td>
-                                    <td>{{ $pm->nomor_telepon_pemilik }}</td>
-                                    <td>
-                                        <img src="{{ asset($pm->foto_ktp_pemilik) }}" alt="Foto KTP">
-                                    </td>
+                                    <td>{{ $pm->nomor_pemilik_mobil }}</td>
+                                    <td>{{ $pm->foto_ktp_pemilik}}</td>
                                     <td>
                                         <button class="btn btn-success">Edit</button>
                                     </td>
@@ -88,25 +68,39 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                    </div>
-                </div>
+                        <div class="modal-body">
+                            <!-- Form Tambah Mobil -->  
+                                <form method="post" action="{{ route('penggunapm.simpan') }}">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Username</label>
+                                        <input type="text" name="username" class="form-control mb-3"
+                                            placeholder="Masukkan Username">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Nama</label>
+                                        <input type="text" name="nama_pemilik" class="form-control mb-3"
+                                            placeholder="Masukkan Nama Lengkap">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Alamat</label>
+                                        <input type="text" name="alamat_pemilik" class="form-control mb-3"
+                                            placeholder="Masukkan Alamat">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Nomor Telepon</label>
+                                        <input type="number" name="nomor_telepon_pemilik" class="form-control mb-3"
+                                            placeholder="Masukkan Nomor Telepon">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Foto KTP</label>
+                                        <input type="file" name="foto_ktp_pemilik" class="form-control mb-3">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </form>           
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function(){
-            var output = document.getElementById('imagePreview');
-            output.src = reader.result;
-            output.style.display = "block";
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-    
-    document.getElementById('foto_profil').addEventListener('change', previewImage);
-</script>
-
-@endsection
+@endsection  
