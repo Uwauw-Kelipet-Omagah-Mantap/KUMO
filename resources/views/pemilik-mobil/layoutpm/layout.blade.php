@@ -57,10 +57,13 @@
                         <a class="nav-link" href="{{ route('pemilik-mobil.daftarmobilpm.index') }}">Manajemen Mobil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pemilik-mobil.daftarmobilpm.index') }}">Manajemen Pembayaran</a>
+                        <a class="nav-link" href="{{ route('daftarmobilpm.index') }}">Manajemen Mobil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pemilik-mobil.daftarmobilpm.index') }}">Riwayat Transaksi</a>
+                        <a class="nav-link" href="{{ route('daftarmobilpm.index') }}">Manajemen Pembayaran</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('daftarmobilpm.index') }}">Riwayat Transaksi</a>
                     </li>
                 </ul>
                 {{-- START LOGOUT --}}

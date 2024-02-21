@@ -230,26 +230,14 @@
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="" class="form-label">Tipe Mobil</label>
-                                                    <select name="tipe_mobil" class="form-select mb-3" required>
-                                                        <option value="sedan">Sedan</option>
-                                                        <option value="suv">SUV</option>
-                                                        <option value="minibus">Minibus</option>
-                                                        <option value="truck">Truk</option>
+                                                    <select name="tipe" id="tipe" class="form-select input">
+                                                        <option value="">Pilih</option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="merk_mobil" class="form-label">Merk Mobil</label>
-                                                    <select name="merk_mobil" class="form-select mb-3" required>
-                                                        <option value="toyota">Toyota</option>
-                                                        <option value="daihatsu">Daihatsu</option>
-                                                        <option value="suzuki">Suzuki</option>
-                                                        <option value="mitsubishi">Mitsubishi</option>
-                                                        <option value="nissan">Nissan</option>
-                                                        <option value="isuzu">Isuzu</option>
-                                                        <option value="bmw">BMW</option>
-                                                        <option value="mercedes-benz">Mercedes-Benz</option>
-                                                        <option value="wuling">Wuling</option>
-                                                        <option value="honda">Honda</option>
+                                                    <label for="" class="form-label">Merk Mobil</label>
+                                                    <select name="merk" id="merk" class="form-select input">
+                                                        <option value=""></option>
                                                     </select>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Simpan</button>

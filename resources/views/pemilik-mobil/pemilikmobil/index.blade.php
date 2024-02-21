@@ -32,62 +32,61 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <span class="h2">Pemilik Mobil</span>
+                    <span class="h2">Daftar User</span>
                 </div>
                 <div class="card-body">
-                    <div class="container" style="margin-top: 0px;">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <form method="POST" action="{{ route('penggunapm.simpan') }}" enctype="multipart/form-data">
-                                    @csrf
-                                    <table class="table table-hovered table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <th>Username</th>
-                                                <td>{{ Auth::user()->username }}</td>
-                                                <input type="hidden" name="username" value="{{ Auth::user()->username }}">
-                                            </tr>
-                                            <tr>
-                                                <th>Nama Lengkap</th>
-                                                <td>
-                                                    <input type="text" class="form-control" id="nama_pemilik"
-                                                        name="nama_pemilik" placeholder="Masukkan Nama Lengkap" value="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Alamat</th>
-                                                <td>
-                                                    <input type="text" class="form-control" id="alamat_pemilik"
-                                                        name="alamat_pemilik" placeholder="Masukkan Alamat">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Nomor Telepon</th>
-                                                <td>
-                                                    <input type="number" class="form-control" id="nomor_telepon_pemilik"
-                                                        name="nomor_telepon_pemilik" placeholder="Masukkan No Telepon">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Foto KTP</th>
-                                                <td>
-                                                    <input type="file" name="foto_ktp_pemilik" class="form-control mb-3">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Foto Profil</th>
-                                                <td>
-                                                    <input type="file" name="foto_profil_pemilik" id="foto_profil_pemilik" class="form-control mb-3">
-                                                    <img id="imagePreview" src="#" alt="Preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px;">
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-success">Simpan</button>
-                                    </div>
-                                </form>
-                            </div>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" name="search" placeholder="Search"
+                        aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <table class="table table-hovered table-bordered">
+                        <thead>
+                            <tr>
+                                <th>NO</th>
+                                <th>USERNAME</th>
+                                <th>NAMA</th>
+                                <th>ALAMAT</th>
+                                <th>NO TELEPON</th>
+                                <th>FOTO KTP</th>
+                                <th>AKSI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($pemilik as $pm)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $pm->username }}</td>
+                                    <td>{{ $pm->nama_pemilik }}</td>
+                                    <td>{{ $pm->alamat_pemilik }}</td>
+                                    <td>{{ $pm->nomor_telepon_pemilik }}</td>
+                                    <td>
+                                        <img src="{{ asset($pm->foto_ktp_pemilik) }}" alt="Foto KTP">
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success">Edit</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#tambahAkunModal">Tambah</button>
+                </div>
+                <!-- A Modal Tambah Mobil -->
+                <div class="modal fade" id="tambahAkunModal" tabindex="-1" aria-labelledby="tambahAkunModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="tambahAkunModalLabel">Tambah Akun</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                     </div>
                 </div>
