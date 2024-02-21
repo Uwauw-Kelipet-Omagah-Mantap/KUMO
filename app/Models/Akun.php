@@ -15,6 +15,7 @@ class Akun extends Authenticatable
     protected $hidden = ['password'];
     protected $keyType = 'string';
     public $timestamps = false;
+    protected $cast = ['password => hassed'];
 
 
     //RELATION ADMIN

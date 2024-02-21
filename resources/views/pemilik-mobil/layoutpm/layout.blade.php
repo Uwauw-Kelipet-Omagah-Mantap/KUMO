@@ -50,10 +50,10 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ route('dashboardpm.index') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('pemilik-mobil.pemilikmobil.index') }}">Manajemen User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pemilikmobil.index') }}">Manajemen User</a>
+                        <a class="nav-link" href="{{ route('pemilik-mobil.daftarmobilpm.index') }}">Manajemen Mobil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('daftarmobilpm.index') }}">Manajemen Mobil</a>

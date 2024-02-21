@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('admin', function (Blueprint $table) {
             $table->string('id_admin')->primary();
+            $table->string('username')->nullable(false);
             $table->string('id_perusahaan')->nullable(false);
             $table->string('nama_admin', 50)->nullable(false);
             $table->timestamps();
-            //FK
+            //FK PERUSAHAAN
             $table->foreign('id_perusahaan')->references('id_perusahaan')->on('perusahaan')
+                ->cascadeOnDelete()->cascadeOnUpdate();
+            //FK AKUN
+            $table->foreign('username')->references('username')->on('akun')
                 ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }

@@ -1,3 +1,4 @@
-@extends('pelanggan.layoutpl.layout')
+@extends('layoutpl.layout')
 @section('title', 'Halaman Dashboard')
 @section('content')
+

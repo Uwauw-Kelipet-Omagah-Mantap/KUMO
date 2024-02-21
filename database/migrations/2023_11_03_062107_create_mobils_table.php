@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('mobil', function (Blueprint $table) {
             $table->unsignedBigInteger('id_mobil', true);
             $table->unsignedBigInteger('id_pemilik_mobil')->nullable(false);
-            $table->unsignedBigInteger('id_model_mobil', false)->nullable();
+            $table->unsignedBigInteger('id_model_mobil')->nullable(false);
             // $table->string('no_polisi', 10)->nullable(false);
             // $table->enum('status_mobil', [
             //                                 'tersedia',
             //                                 'sedang disewa'
             //                             ])->nullable(false);
             // $table->string('foto_stnk', 50)->nullable(false);
+            $table->string('nama_mobil')->nullable(false);
             $table->string('foto_mobil', 50)->nullable(false);
             $table->integer('harga_mobil')->nullable(false);
             $table->timestamps();

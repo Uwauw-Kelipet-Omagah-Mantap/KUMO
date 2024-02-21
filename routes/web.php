@@ -9,8 +9,12 @@ use App\Http\Controllers\DashboardPLController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InformasiMobilADController;
 use App\Http\Controllers\InformasiPembayaranAD;
+use App\Http\Controllers\ListMobilController;
 use App\Http\Controllers\ManajemenPembayaranADController;
+use App\Http\Controllers\ManajemenPembayaranPMController;
 use App\Http\Controllers\ManajemenUlasanAD;
+use App\Http\Controllers\ManajemenUlasanPM;
+use App\Http\Controllers\PagePembayaranController;
 use App\Http\Controllers\PemilikMobilController;
 use App\Http\Controllers\LandingPageController;
 
@@ -55,6 +59,12 @@ Route::prefix('/pemilik-mobil')->middleware(['auth', 'checkrole:pemilik_mobil'])
     Route::get('/manage-user/edit/{id}', [PemilikMobilController::class, 'edit'])->name('penggunapm.edit');
     Route::post('/manage-user/edit/{id}', [PemilikMobilController::class, 'update'])->name('penggunapm.update');
     Route::delete('/manage-user/destroy/{id}', [PemilikMobilController::class, 'destroy'])->name('penggunapm.destroy');
+    //Rute Manage pembayran pemilik mobil
+    Route::get('/manage-pembayaran', [ManajemenPembayaranPMController::class, 'index'])->name('pemilik-mobil.manajemenpembayaranpm.index');
+
+    //Rute Manage ulasan pemilik mobil
+    Route::get('/manage-ulasan', [ManajemenUlasanPM::class, 'index'])->name('pemilik-mobil.ulasanpm.index');
+
 });
 
 Route::prefix('/admin')->middleware(['auth', 'checkrole:admin'])->group(function () {
@@ -70,6 +80,8 @@ Route::prefix('/admin')->middleware(['auth', 'checkrole:admin'])->group(function
     //Rute manage mobil admin
     Route::get('/manage-mobil', [DaftarMobilADController::class, 'index'])->name('mobilad.index');
     Route::post('/manage-mobil/simpan', [DaftarMobilADController::class, 'simpan'])->name('mobilad.simpan');
+    Route::delete('/manage-mobil/destroy{id}', [DaftarMobilADController::class, 'destroy'])->name('mobilad.destroy');
+
     //Rute informasi mobil admin
     Route::get('/manage-informasi-mobil', [InformasiMobilADController::class, 'index'])->name('informasimobilad.index');
     //Rute pembayaran mobil admin
@@ -100,6 +112,14 @@ Route::prefix('/pelanggan')->middleware(['auth', 'checkrole:pelanggan'])->group(
 //     Route::post('/pemilikmobil/edit/{id}', [PemilikMobilController::class, 'update'])->name('pemilikmobil.update');
 // });
 
-// Route::prefix('landingpage')->group(function () {
-//     Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
-// });
+Route::prefix('')->group(function () {
+    Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
+});
+
+Route::prefix('List-Mobil')->group(function () {
+    Route::get('/', [ListMobilController::class, 'index'])->name('list-mobil.index');
+});
+
+Route::prefix('Page-Pembayaran')->group(function () {
+    Route::get('/', [PagePembayaranController::class, 'index'])->name('page-pembayaran.index');
+});

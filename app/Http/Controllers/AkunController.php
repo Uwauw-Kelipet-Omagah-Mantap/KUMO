@@ -36,7 +36,7 @@ class AkunController extends Controller
 
     public function simpan(Request $request)
     {
-        $data = $request->validate([
+        $data = $request->validate([ 
             'username' => 'required',
             'password' => 'required',
             'role' => 'required',
@@ -63,8 +63,13 @@ class AkunController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'username' => ['required']
+            'username' => ['required'],
+            'password' => ['required'],
+            'role' => ['required']
         ]);
+        $request->user()->fill([
+            'password' => Hash::make($request->newPassword)
+        ])->save();
         $user = Akun::findOrFail($id);
         $user->fill($data);
         $user->save();
