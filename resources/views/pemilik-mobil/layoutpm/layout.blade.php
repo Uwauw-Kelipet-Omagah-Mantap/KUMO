@@ -47,6 +47,7 @@
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
@@ -64,21 +65,25 @@
                 </ul>
                 {{-- START LOGOUT --}}
                 @if (Auth::check())
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <button class="btn btn-danger">Logout</button>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                    <div class="d-flex align-items-center">
+                        <span class="mr-3 text-light">Halooo, {{ Auth::user()->username }}!</span>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <button class="btn btn-danger">Logout</button>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
                 @else
                     <a href="{{ route('login') }}">Login</a>
                 @endif
                 {{-- END LOGOUT --}}
-                <img class="img" src="{{ asset('brocklesnar.jpg') }}" alt="">
+               
             </div>
         </div>
     </nav>
+    
     <div class="container">
         @yield('content')
     </div>

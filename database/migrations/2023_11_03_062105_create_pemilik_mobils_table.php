@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('alamat_pemilik')->nullable(false);
             $table->string('nomor_telepon_pemilik', 15)->nullable(false);
             $table->string('foto_ktp_pemilik', 50)->nullable(false);
+            $table->string('foto_profil_pemilik', 50)->nullable(false);
             $table->timestamps();
             //FK AKUN
             $table->foreign('username')->references('username')->on('akun')

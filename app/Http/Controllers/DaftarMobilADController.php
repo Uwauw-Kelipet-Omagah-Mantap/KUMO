@@ -17,12 +17,6 @@ class DaftarMobilADController extends Controller
         $mobil = ModelMobil::all();
         return view("admin.mobilad.index", compact('mobil'));
     }
-
-    public function getTipe($id)
-    {
-
-    }
-
     public function simpan(Request $request)
     {
         // Validasi input

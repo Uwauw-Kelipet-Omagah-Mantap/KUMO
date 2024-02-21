@@ -24,40 +24,31 @@ class PemilikMobilController extends Controller
     
     public function simpan(Request $request)
     {
-        dd($request);
         // Validasi data
         $data = $request->validate([
             'nama_pemilik' => ['required'],
             'alamat_pemilik' => ['required'],
             'nomor_telepon_pemilik' => ['required'],
-            'foto_ktp_pemilik' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'foto_profil_pemilik' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
+            'foto_ktp_pemilik' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
 
         // Ambil username pengguna yang sedang login
         $username = Auth::user()->username;
 
-        // Simpan foto KTP pemilik ke direktori yang sesuai dalam storage
-        if ($request->hasFile('foto_ktp_pemilik') && $request->hasFile('foto_profil_pemilik')) {
-            $fotoKTP = $request->file('foto_ktp_pemilik');
-            $fotoProfil = $request->file('foto_profil_pemilik');
-
-            $fotoKTPName = time() . '_' . $fotoKTP->getClientOriginalName();
-            $fotoProfilName = time() . '_' . $fotoProfil->getClientOriginalName();
-
-            $fotoKTP->storeAs('public/file', $fotoKTPName);
-            $fotoProfil->storeAs('public/file', $fotoProfilName);
+         // Simpan foto KTP pemilik ke direktori yang sesuai dalam storage
+         if ($request->file('foto_ktp_pemilik')) {
+            $file = $request->file('foto_ktp_pemilik');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/file', $fileName);
 
             // Simpan data pemilik mobil ke dalam tabel pemilik_mobil menggunakan metode create
             PemilikMobil::create([
-                'username' => $username,
+                'username' => $username,'username',
                 'nama_pemilik' => $request->nama_pemilik,
                 'alamat_pemilik' => $request->alamat_pemilik,
                 'nomor_telepon_pemilik' => $request->nomor_telepon_pemilik,
-                'foto_ktp_pemilik' => 'storage/file/' . $fotoKTPName,
-                'foto_profil_pemilik' => 'storage/file/' . $fotoProfilName,
+                'foto_ktp_pemilik' => 'storage/file/' . $fileName,
             ]);
-
             return redirect()->route('pemilik-mobil.pemilikmobil.index')->with('success', 'Pemilik berhasil ditambah');
         } else {
             return redirect()->route('pemilik-mobil.pemilikmobil.index')->with('error', 'Pemilik gagal ditambah');
