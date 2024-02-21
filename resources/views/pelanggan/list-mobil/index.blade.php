@@ -1,3 +1,5 @@
+@extends('pelanggan.layoutpl2.layout')
+
 <html>
 
 <head>
@@ -127,7 +129,7 @@
                                         <br>
                                         <span>{{ $pengguna->role }}</span>
                                     </div>
-                                    <a href="{{ route('formlogin.index') }}" type="submit"
+                                    <a href="{{ route('pelanggan.page-pembayaran.index') }}" type="submit"
                                         class="btn btn-primary">Pesan</a>
                                 </form>
                             </div>

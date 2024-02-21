@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Akun;
 use Illuminate\Http\Request;
 
-class ListMobilController extends Controller
+class ListMobilControllerPL extends Controller
 {
     public function __construct()
     {
@@ -22,7 +22,6 @@ class ListMobilController extends Controller
             $query->where('username', 'like', '%' . $search . '%')
                 ->orWhere('role', 'like', '%' . $search . '%');
         })->get();
-        return view('list-mobil.index', compact('penggune'));
+        return view('pelanggan.list-mobil.index', compact('penggune'));
     }
-
 }
