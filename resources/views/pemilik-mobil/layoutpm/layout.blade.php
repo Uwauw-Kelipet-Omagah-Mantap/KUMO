@@ -47,7 +47,6 @@
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
@@ -57,13 +56,12 @@
                         <a class="nav-link" href="{{ route('pemilik-mobil.daftarmobilpm.index') }}">Manajemen Mobil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('daftarmobilpm.index') }}">Manajemen Mobil</a>
+                        <a class="nav-link" href="{{ route('pemilik-mobil.manajemenpembayaranpm.index') }}">Manajemen
+                            Pembayaran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('daftarmobilpm.index') }}">Manajemen Pembayaran</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('daftarmobilpm.index') }}">Riwayat Transaksi</a>
+                        <a class="nav-link" href="{{ route('pemilik-mobil.ulasanpm.index') }}">Riwayat
+                            Transaksi</a>
                     </li>
                 </ul>
                 {{-- START LOGOUT --}}
@@ -105,7 +103,6 @@ border: 1px solid rgba(0, 0, 0, 0.1);
             </div>
         </div>
     </nav>
-    
     <div class="container">
         @yield('content')
     </div>
